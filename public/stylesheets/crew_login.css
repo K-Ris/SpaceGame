@@ -1,0 +1,84 @@
+#matrix{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.matrix_btn {
+    background-color: #646eaf; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.matrix_btn:hover {
+    background-color: #96a3c7; /* Green */
+    color: white;
+}
+
+.matrix_btn_O {
+    background-color: #cabb3b; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.matrix_btn_O:hover {
+    background-color: #96a3c7; /* Green */
+    color: white;
+}
+
+.matrix_btn_X {
+    background-color: #ca3644; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.matrix_btn_X:hover {
+    background-color: #96a3c7; /* Green */
+    color: white;
+}
+
+.matrix_btn_V {
+    background-color: #45ca4a; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.matrix_btn_V:hover {
+    background-color: #96a3c7; /* Green */
+    color: white;
+}
