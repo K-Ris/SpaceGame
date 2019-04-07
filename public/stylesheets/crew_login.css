@@ -6,10 +6,14 @@ a {
     color: #00B7FF;
 }
 
+hr{
+    margin-top: 0px;
+}
+
 #matrix{
     margin: 0;
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -90,3 +94,21 @@ a {
     background-color: #96a3c7; /* Green */
     color: white;
 }
+
+#table_code{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 50px;
+}
+
+.p_code{
+    background-color: #c6c7e4; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+

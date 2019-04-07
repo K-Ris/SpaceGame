@@ -1,10 +1,18 @@
+html{
+    background-image: linear-gradient(#a3adff, #243860);
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
 a {
     color: #00B7FF;
 }
+
 
 .main-container {
     padding-bottom:30px;
@@ -14,7 +22,8 @@ a {
     font-size: 40px;
     font-weight: bold;
     text-align: center;
-    padding-top: 30px;
+    color: #FFFFFF;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .button-login{
@@ -29,6 +38,9 @@ a {
 
     font-size: 55px;
     font-weight: bold;
+    border: none;
+
+    background-color: #a3adff;
 }
 
 .button-crew{
@@ -41,7 +53,9 @@ a {
     height: 30px;
     width: 30%;
     font-size: 12px;
-
+    background-color: #192960;
+    color: #FFFFFF;
+    border: none;
 }
 
 
