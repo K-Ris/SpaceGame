@@ -17,3 +17,7 @@ document.getElementById("btn_matrix_3").addEventListener("click", function(){
 document.getElementById("btn_matrix_4").addEventListener("click", function(){
     document.getElementById("demo").innerHTML = "Button4";
 });
+
+document.getElementById("btn_back").addEventListener("click", function(){
+    location.href='/login'
+});
