@@ -6,28 +6,43 @@ a {
     color: #00B7FF;
 }
 
-hr{
+hr {
     margin-top: 0px;
 }
 
-#matrix{
+
+
+#btn_back {
+    background-color: #646eaf; /* Green */
+    border: none;
+    color: white;
+    padding: 30px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#matrix {
     margin: 0;
     position: absolute;
     top: 70%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    max-width: 100%;
 }
 
 .matrix_btn {
     background-color: #646eaf; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 30px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+
 
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -42,7 +57,7 @@ hr{
     background-color: #cabb3b; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 30px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -61,7 +76,7 @@ hr{
     background-color: #ca3644; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 30px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -80,7 +95,7 @@ hr{
     background-color: #45ca4a; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 30px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -95,6 +110,23 @@ hr{
     color: white;
 }
 
+#table_code {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p_code {
+    background-color: #c6c7e4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+/*
 #table_code{
     margin-left:auto;
     margin-right:auto;
@@ -105,7 +137,7 @@ hr{
 }
 
 .p_code{
-    background-color: #c6c7e4; /* Green */
+    background-color: #c6c7e4;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -115,3 +147,4 @@ hr{
     text-align: center;
 }
 
+*/

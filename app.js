@@ -8,6 +8,7 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var crewLoginRouter = require('./routes/crew_login');
 var userLoginRouter = require('./routes/user_login');
+var crewMainRouter = require('./routes/crew_main');
 
 var app = express();
 
@@ -22,5 +23,6 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/crew_login', crewLoginRouter);
 app.use('/user_login', userLoginRouter);
+app.use('/crew_main', crewMainRouter);
 
 module.exports = app;
