@@ -111,8 +111,13 @@ hr {
 }
 
 #table_code {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 100%;
 }
 
 .p_code {
