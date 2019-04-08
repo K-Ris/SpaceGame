@@ -1,81 +1,159 @@
-
-var passcode = ["0","0","0","0"];
+var passcode = ["0", "0", "0", "0"];
 var passcounter = 0;
 
 
-document.getElementById("btn_matrix_1").addEventListener("click", function(){
+document.getElementById("btn_matrix_1").addEventListener("click", function () {
     inputCode(1);
 });
 
 
-document.getElementById("btn_matrix_2").addEventListener("click", function(){
+document.getElementById("btn_matrix_2").addEventListener("click", function () {
     inputCode(2);
 });
 
 
-document.getElementById("btn_matrix_3").addEventListener("click", function(){
+document.getElementById("btn_matrix_3").addEventListener("click", function () {
     inputCode(3);
 });
 
 
-document.getElementById("btn_matrix_4").addEventListener("click", function(){
+document.getElementById("btn_matrix_4").addEventListener("click", function () {
     inputCode(4);
 });
 
-document.getElementById("btn_matrix_5").addEventListener("click", function(){
+document.getElementById("btn_matrix_5").addEventListener("click", function () {
     inputCode(5);
 });
 
-document.getElementById("btn_matrix_6").addEventListener("click", function(){
+document.getElementById("btn_matrix_6").addEventListener("click", function () {
     inputCode(6);
 });
 
-document.getElementById("btn_matrix_7").addEventListener("click", function(){
+document.getElementById("btn_matrix_7").addEventListener("click", function () {
     inputCode(7);
 });
 
-document.getElementById("btn_matrix_8").addEventListener("click", function(){
+document.getElementById("btn_matrix_8").addEventListener("click", function () {
     inputCode(8);
 });
 
-document.getElementById("btn_matrix_9").addEventListener("click", function(){
+document.getElementById("btn_matrix_9").addEventListener("click", function () {
     inputCode(9);
 });
 
-document.getElementById("btn_back").addEventListener("click", function(){
-    resetCode();
-    location.href='/login'
+document.getElementById("btn_matrix_a").addEventListener("click", function () {
+    inputCode("a");
 });
+
+document.getElementById("btn_matrix_b").addEventListener("click", function () {
+    inputCode("b");
+});
+
+document.getElementById("btn_matrix_c").addEventListener("click", function () {
+    inputCode("c");
+});
+
+document.getElementById("btn_matrix_O").addEventListener("click", function () {
+    resetCode();
+});
+
+//document.getElementById("btn_back").addEventListener("click", function(){
+//    resetCode();
+//    location.href='/login'
+//});
 
 
 function inputCode(code) {
     passcode[passcounter] = code;
 
+    passcounter++;
 
-
-
-    if(passcounter == 0){
+    if (passcounter == 1) {
         document.getElementById("p_code_1").innerHTML = code;
 
-    }
-    else if(passcounter == 1){
+    } else if (passcounter == 2) {
         document.getElementById("p_code_2").innerHTML = code;
 
-    }
-    else if(passcounter == 2){
+    } else if (passcounter == 3) {
         document.getElementById("p_code_3").innerHTML = code;
 
-    }
-    else if(passcounter == 3){
+    } else if (passcounter == 4) {
         document.getElementById("p_code_4").innerHTML = code;
         //login
-        location.href='/crew_main'
+        //location.href='/crew_main'
+
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Post successful");
+
+                //save cookie
+                //document.cookie("passcode="+passcodeReady);
+                if(req.responseText == "notfound"){
+                    document.getElementById("demo").innerHTML = "Falscher Passcode";
+                }
+                else {
+
+                    try{
+
+                        var responsJSON = JSON.parse(req.responseText);
+
+
+                        setCookie("passcode", responsJSON.passcode, 1);
+
+                        location.href='/crew_select';
+                    }
+                    catch(err){
+                        console.log(err);
+
+                        document.getElementById("demo").innerHTML = err.message;
+
+                    }
+                }
+
+            }
+        };
+        req.open("POST", "/loginhandler", true);
+        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        var passcodeReady = passcode.join('');
+
+        req.send("passcode="+passcodeReady);
+
+        resetCode();
     }
 
-    passcounter++;
+
+
+
 }
 
-function resetCode(){
-    passcode = ["0","0","0","0"];
+function resetCode() {
+    passcode = ["0", "0", "0", "0"];
     passcounter = 0;
+    document.getElementById("p_code_1").innerHTML = "0";
+    document.getElementById("p_code_2").innerHTML = "0";
+    document.getElementById("p_code_3").innerHTML = "0";
+    document.getElementById("p_code_4").innerHTML = "0";
+}
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
 }
