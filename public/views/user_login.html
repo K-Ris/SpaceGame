@@ -4,16 +4,85 @@
     <meta charset="UTF-8">
     <title>Space Maze Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
     <link rel="stylesheet" href="/stylesheets/crew_login.css">
 </head>
 <body>
 
-<b class="title">Space Maze Game</b>
+<ul>
+    <li><a class="active" href="/views/login.html">Back</a></li>
+    <li><p class="nav_title">Space Maze Game</p></li>
+    <li style="float:right"><a href="about.asp">Help</a></li>
+</ul>
 
-<b class="title">Login</b>
+<p>Spielercode eingeben</p>
+<p id="demo"></p>
 
-<button class="matrix_btn" id="btn_back">Back</button>
+<table id="table_code">
+    <tr>
+        <td><p class="p_code" id="p_code_1">0</p></td>
+        <td><p class="p_code" id="p_code_2">0</p></td>
+        <td><p class="p_code" id="p_code_3">0</p></td>
+        <td><p class="p_code" id="p_code_4">0</p></td>
+    </tr>
 
+
+</table>
+
+<table id="matrix">
+    <tr>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_1">1</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_2">2</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_3">3</button>
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            <button class="matrix_btn" id="btn_matrix_4">4</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_5">5</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_6">6</button>
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>
+            <button class="matrix_btn" id="btn_matrix_7">7</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_8">8</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_9">9</button>
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>
+            <button class="matrix_btn_X" id="btn_matrix_X">X</button>
+        </td>
+        <td>
+            <button class="matrix_btn_O" id="btn_matrix_O">O</button>
+        </td>
+        <td>
+            <button class="matrix_btn_V" id="btn_matrix_V">&#10003</button>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
 <script type="text/javascript" src="/javascripts/user_login.js"></script>
 </body>
 </html>

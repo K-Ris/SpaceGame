@@ -11,6 +11,9 @@ router.all('/', function(req, res, next) {
     //make database request depending on post content
     //return database result
     var passcodeVar = req.body.passcode;
+    var requesttypeVar = req.body.requesttype;
+
+    console.log(requesttypeVar);
 
     console.log(passcodeVar);
 
@@ -25,7 +28,20 @@ router.all('/', function(req, res, next) {
         //console.log("Connected to DB");
         //do operations which involve interacting with DB.
 
-        var collection = db.collection('crew');
+        var collection = db.collection('users');
+
+        if(requesttypeVar == "crew"){
+
+             collection = db.collection('crew');
+        }
+        else if(requesttypeVar == "users"){
+
+            collection = db.collection('users');
+        }
+        else{
+
+            collection = db.collection('players');
+        }
 
         collection.find({passcode:passcodeVar}).toArray(function(err, result){
             console.log( "dbresult:" + result[0]);
@@ -33,12 +49,9 @@ router.all('/', function(req, res, next) {
 
             if (result[0] != undefined){
 
-                //console.log(user_name);
-                //console.log(pass_word);
-                //console.log("post:" + user_token);
-                //console.log(user.user_token);
-
                 console.log("logged in");
+                console.log("result: "+ result[0].passcode);
+                delete user["_id"];
                 res.json(user);
 
                 db.close();
