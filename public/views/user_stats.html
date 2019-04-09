@@ -8,15 +8,46 @@
     <link rel="stylesheet" href="/stylesheets/main.css">
 </head>
 <body>
-<ul>
-    <li><a class="active" href="/views/login.html">Back</a></li>
-    <li><p class="nav_title">Space Maze Game</p></li>
-    <li style="float:right"><a href="about.asp">Help</a></li>
+<ul class="navUl">
+    <li class="navLi"><a class="active" href="/views/login.html">Back</a></li>
+    <li class="navLi"><p class="nav_title">Space Maze Game</p></li>
 </ul>
 
 <p>Spielerstatus</p>
 
+<p>Daten</p>
+
+<p>Kapazität:</p>
+<p>400</p>
+
+<p>Belegt:</p>
+<p>300</p>
 
 
+<progress id="health" value="300" max="400"></progress>
+
+<p>Gesamt:</p>
+<p>500</p>
+
+
+<progress max="100" value="80">
+    <div class="progress-bar">
+        <span style="width: 80%;">Progress: 80%</span>
+    </div>
+</progress>
+
+<p>Zu tun</p>
+
+<ul>
+    <li>Rattenfänger</li>
+    <li>Kistenschlepper</li>
+    <li>Das Experiment</li>
+</ul>
+
+<button>Scoreboard</button>
+<button id="btn_log">Logbuch</button>
+
+<script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
+<script type="text/javascript" src="/javascripts/user_stats.js"></script>
 </body>
 </html>
