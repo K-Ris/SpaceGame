@@ -120,7 +120,7 @@ function inputCode(code) {
 
         var passcodeReady = passcode.join('');
 
-        req.send("passcode="+passcodeReady + "&" + "requesttype=crew");
+        req.send("passcode="+passcodeReady + "&" + "requesttype=crew_login");
 
         resetCode();
     }

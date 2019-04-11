@@ -109,7 +109,7 @@ function inputCode(code) {
 
         var passcodeReady = passcode.join('');
 
-        req.send("passcode="+passcodeReady + "&" + "requesttype=users");
+        req.send("passcode="+passcodeReady + "&" + "requesttype=user_login");
 
         resetCode();
     }
