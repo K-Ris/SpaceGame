@@ -19,19 +19,19 @@
 <p id="demo">Daten</p>
 
 <p>Kapazität:</p>
-<p>400</p>
+<p id="storage_max">0</p>
 
 <p>Belegt:</p>
-<p>300</p>
+<p id="storage_occ">0</p>
 
 
-<progress id="health" value="300" max="400"></progress>
+<progress id="data_bar" value="0" max="100"></progress>
 
 <p>Gesamt:</p>
-<p>500</p>
+<p id="storage=all">0</p>
 
 
-<progress max="100" value="80">
+<progress max="100" value="0">
     <div class="progress-bar">
         <span style="width: 80%;">Progress: 80%</span>
     </div>
@@ -39,13 +39,10 @@
 
 <p>Zu tun</p>
 
-<ul>
-    <li>Rattenfänger</li>
-    <li>Kistenschlepper</li>
-    <li>Das Experiment</li>
+<ul id="todo_list">
 </ul>
 
-<button>Scoreboard</button>
+<button id="btn_scoreboard">Scoreboard</button>
 <button id="btn_log">Logbuch</button>
 
 <script type="text/javascript" src="/javascripts/cookiehandler.js"></script>

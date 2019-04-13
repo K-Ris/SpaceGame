@@ -16,114 +16,184 @@ router.all('/', function(req, res, next) {
     console.log("Loginhandler Requesttype: " +requesttypeVar);
     console.log("Loginhandler Passcode: " +passcodeVar);
 
-    var dbHost = 'mongodb://masterkey:ananaskokos84@ds151049.mlab.com:51049/spacemaze_db';
+    if(passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null"){
 
-    mongoose.connect(dbHost);
+        var dbHost = 'mongodb://masterkey:ananaskokos84@ds151049.mlab.com:51049/spacemaze_db';
 
-    var db = mongoose.connection;
+        mongoose.connect(dbHost);
 
-    db.on('error', console.error.bind(console, 'connection error:'));
-    db.once('open', function(){
-        //console.log("Connected to DB");
-        //do operations which involve interacting with DB.
+        var db = mongoose.connection;
 
-        //var collection = db.collection('users');
+        db.on('error', console.error.bind(console, 'connection error:'));
+        db.once('open', function(){
+            //console.log("Connected to DB");
+            //do operations which involve interacting with DB.
 
-        //Handle Crew Login Attempt <---------------------------------------------------------------
-        if(requesttypeVar == "crew_login"){
+            //var collection = db.collection('users');
 
-            var collection = db.collection('crew');
+            //Handle Crew Login Attempt <---------------------------------------------------------------
+            if(requesttypeVar == "crew_login"){
 
-            collection.find({passcode:passcodeVar}).toArray(function(err, result){
-                console.log( "Crew Login dbresult:" + result[0]);
-                user = result[0];
+                var collection = db.collection('crew');
 
-                if (result[0] != undefined){
+                collection.find({passcode:passcodeVar}).toArray(function(err, result){
+                    console.log( "Crew Login dbresult:" + result[0]);
+                    user = result[0];
 
-                    console.log("Crew logged in!");
-                    console.log("Crew result: "+ result[0].passcode);
-                    delete user["_id"];
-                    res.json(user);
+                    if (result[0] != undefined){
 
-                    db.close();
-                    res.end();
+                        console.log("Crew logged in!");
+                        console.log("Crew result: "+ result[0].passcode);
+                        delete user["_id"];
+                        res.json(user);
 
-                } else{
-                    console.log("Crew login failed, user not existing");
-                    res.write("notfound");
-                }
+                        db.close();
+                        res.end();
 
-                db.close();
-                res.end();
-            })
-        }
-        //Handle User Login Attempt <--------------------------------------------------------
-        else if(requesttypeVar == "user_login"){
-
-            var collection = db.collection('users');
-
-            collection.find({passcode:passcodeVar}).toArray(function(err, result){
-                console.log( "User Loign dbresult:" + result[0]);
-                user = result[0];
-
-                if (result[0] != undefined){
-
-                    console.log("User logged in");
-                    console.log("result: "+ result[0].passcode);
-                    delete user["_id"];
-                    res.json(user);
+                    } else{
+                        console.log("Crew login failed, user not existing");
+                        res.write("notfound");
+                    }
 
                     db.close();
                     res.end();
+                })
+            }
+            //Handle User Login Attempt <--------------------------------------------------------
+            else if(requesttypeVar == "user_login"){
 
-                } else{
-                    console.log("login failed, user not existing");
-                    res.write("notfound");
-                }
+                var collection = db.collection('users');
 
-                db.close();
-                res.end();
-            })
-        }
-        // Get User Stats <----------------------------------------------------------------------------
-        else if(requesttypeVar == "user_stats"){
-            var collection = db.collection('users');
+                collection.find({passcode:passcodeVar}).toArray(function(err, result){
+                    console.log( "User Loign dbresult:" + result[0]);
+                    user = result[0];
 
+                    if (result[0] != undefined){
 
+                        console.log("User logged in");
+                        console.log("result: "+ result[0].passcode);
+                        delete user["_id"];
+                        res.json(user);
 
-            collection.find({passcode:passcodeVar}).toArray(function(err, result){
-                console.log( "dbresult:" + result[0].passcode);
-                user = result[0];
+                        db.close();
+                        res.end();
 
-                if (result[0] != undefined){
+                    } else{
+                        console.log("login failed, user not existing");
+                        res.write("notfound");
+                    }
 
-                    console.log("logged in");
-                    console.log("result: "+ result[0].passcode);
-                    delete user["_id"];
+                    db.close();
+                    res.end();
+                })
+            }
+            // Get User Stats <----------------------------------------------------------------------------
+            else if(requesttypeVar == "user_stats"){
+                var collection = db.collection('users');
 
-                    user["quest_names"] = [];
-                    //console.log(user.quests[0].quest_id);
+                collection.find({passcode:passcodeVar}).toArray(function(err, result){
+                    console.log( "User Stats dbresult:" + result[0].passcode);
+                    user = result[0];
 
-                    for(i = 0; i < user.quests.length; i++){
+                    if (result[0] != undefined){
+
+                        console.log("logged in");
+                        console.log("result: "+ result[0].passcode);
+                        delete user["_id"];
+
+                        user["quest_names"] = [];
+                        //console.log(user.quests[0].quest_id);
+
                         var collection2 = db.collection('quests');
 
-                        collection2.find({quest_id:user.quests[i].quest_id}).toArray(function(err, result){
-                            console.log( "dbresult:" + result[0]);
+                        var searchedQuestIds = [];
+
+                        for(var i = 0; i < user.quests.length; i++){
+                            searchedQuestIds.push(user.quests[i].quest_id);
+                        }
+
+                        console.log("searchedQuets: " + searchedQuestIds);
+
+
+                        collection2.find({quest_id:{ $in: searchedQuestIds}}).toArray(function(err, result){
                             quests = result;
+
+                            //console.log(result);
 
                             if (result != undefined){
 
                                 console.log("logged in");
                                 console.log("questresult: "+ result[0].quest_name);
 
-                                user["quest_names"].push({"quest_id":result[0].quest_id, "quest_name":result[0].quest_name});
+                                var questResult = result;
 
-                                console.log(JSON.stringify(user));
+                                user["badge_names"] = [];
+                                //console.log(user.quests[0].quest_id);
 
-                                //join quests
-                                //var joinedJson = user;
+                                var collection3 = db.collection('badges');
 
-                                //joinedJson["questnames"] =
+                                var searchedBadgeIds = [];
+
+                                for(var i = 0; i < user.badges.length; i++){
+                                    searchedBadgeIds.push(user.badges[i]);
+                                }
+
+                                console.log("searchedBadgeIds: " + searchedBadgeIds);
+
+
+                                collection3.find({badge_id:{ $in: searchedBadgeIds}}).toArray(function(err, result){
+                                    badges = result;
+
+                                    //console.log(result);
+
+                                    if (result != undefined){
+
+                                        console.log("logged in");
+                                        console.log("badgesresult: "+ result[0].badge_name);
+
+
+                                        for(var j = 0; j < questResult.length; j++){
+                                            user["quest_names"].push({"quest_id":questResult[j].quest_id, "quest_name":questResult[j].quest_name});
+
+                                        }
+
+                                        for(var j = 0; j < result.length; j++){
+                                            user["badge_names"].push({"badge_id":result[j].badge_id, "badge_name":result[j].badge_name});
+
+                                        }
+
+                                        //
+
+                                        console.log(JSON.stringify(user));
+
+                                        res.json(user);
+
+                                        db.close();
+                                        res.end();
+
+                                    } else{
+                                        console.log("user exists, but no quests found");
+                                        //still join quests, but with empty value
+
+                                        user["quest_names"] = [];
+
+                                        res.json(user);
+
+                                        db.close();
+                                        res.end();
+                                    }
+
+                                    //res.json(user);
+
+                                    //db.close();
+                                    //res.end();
+                                })
+
+
+
+                                //
+
+                                //console.log(JSON.stringify(user));
 
                                 //res.json(user);
 
@@ -133,6 +203,8 @@ router.all('/', function(req, res, next) {
                             } else{
                                 console.log("user exists, but no quests found");
                                 //still join quests, but with empty value
+
+                                user["quest_names"] = [];
 
                                 res.json(user);
 
@@ -146,43 +218,36 @@ router.all('/', function(req, res, next) {
                             //res.end();
                         })
 
+
+                    } else{
+                        console.log("login failed, user not existing");
+                        res.write("notfound");
+                        res.end();
                     }
 
-                    console.log(JSON.stringify(user));
+                    //db.close();
+                    //res.end();
+                })
+            }
+            else{
 
-
-                    res.json(user);
-
-                    db.close();
-                    res.end();
-
-
-                } else{
-                    console.log("login failed, user not existing");
-                    res.write("notfound");
-                    res.end();
-                }
-
-                db.close();
+                res.write("wrongtype");
                 res.end();
-            })
-        }
-        else{
 
-            res.write("wrongtype");
-            res.end();
-
-        }
+            }
 
 
 
-    });
+        });
+    }else{
+
+        res.write("nologindata");
+        res.end();
+    }
+
+
 
 });
-
-function test(){
-    console.log("func");
-}
 
 
 

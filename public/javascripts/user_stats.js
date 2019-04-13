@@ -1,11 +1,11 @@
-document.getElementById("btn_log").addEventListener("click", function(){
+document.getElementById("btn_log").addEventListener("click", function () {
 
-    location.href='/user_log'
+    location.href = '/user_log'
 });
 
 updateUser();
 
-function updateUser(){
+function updateUser() {
 
     var pc = getCookie("passcode");
     var lt = getCookie("playertype");
@@ -18,19 +18,23 @@ function updateUser(){
         if (this.readyState == 4 && this.status == 200) {
             console.log("Post successful");
 
-            if(req.responseText == "notfound"){
+            if (req.responseText == "notfound") {
                 document.getElementById("demo").innerHTML = "Falscher Passcode";
                 //Cookie löschen und Autologout
-            }
-            else {
+            } else if (req.responseText == "nologindata") {
+                //Delete Cookies and return to loginscreen
+            } else {
 
-                try{
+                try {
 
                     var responseJSON = JSON.parse(req.responseText);
 
-                    document.getElementById("demo").innerHTML = req.responseText;
-                }
-                catch(err){
+                    document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+
+
+                    document.getElementById("storage_max").innerHTML = responseJSON.storage_max;
+
+                } catch (err) {
                     console.log(err);
 
                     document.getElementById("demo").innerHTML = err.message;
@@ -43,6 +47,6 @@ function updateUser(){
     req.open("POST", "/loginhandler", true);
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    req.send("passcode="+pc + "&" + "requesttype=user_stats");
+    req.send("passcode=" + pc + "&" + "requesttype=user_stats");
 
 }
