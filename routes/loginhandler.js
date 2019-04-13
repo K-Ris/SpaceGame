@@ -37,11 +37,11 @@ router.all('/', function(req, res, next) {
                 var collection = db.collection('crew');
 
                 collection.find({passcode:passcodeVar}).toArray(function(err, result){
-                    console.log( "Crew Login dbresult:" + result[0]);
                     user = result[0];
 
                     if (result[0] != undefined){
 
+                        console.log( "Crew Login dbresult:" + result[0]);
                         console.log("Crew logged in!");
                         console.log("Crew result: "+ result[0].passcode);
                         delete user["_id"];
@@ -65,11 +65,11 @@ router.all('/', function(req, res, next) {
                 var collection = db.collection('users');
 
                 collection.find({passcode:passcodeVar}).toArray(function(err, result){
-                    console.log( "User Loign dbresult:" + result[0]);
                     user = result[0];
 
                     if (result[0] != undefined){
 
+                        console.log( "User Loign dbresult:" + result[0]);
                         console.log("User logged in");
                         console.log("result: "+ result[0].passcode);
                         delete user["_id"];
@@ -92,10 +92,11 @@ router.all('/', function(req, res, next) {
                 var collection = db.collection('users');
 
                 collection.find({passcode:passcodeVar}).toArray(function(err, result){
-                    console.log( "User Stats dbresult:" + result[0].passcode);
                     user = result[0];
 
                     if (result[0] != undefined){
+
+                        console.log( "User Stats dbresult:" + result[0].passcode);
 
                         console.log("logged in");
                         console.log("result: "+ result[0].passcode);

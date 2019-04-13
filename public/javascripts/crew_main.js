@@ -1,13 +1,13 @@
-document.getElementById("btn_log").addEventListener("click", function () {
-
-    location.href = '/user_log'
-});
+//document.getElementById("btn_log").addEventListener("click", function () {
+//
+//    location.href = '/user_log'
+//});
 
 updateUser();
 
 function updateUser() {
 
-    var pc = getCookie("passcode");
+    var pc = getCookie("passcode_crew");
     var lt = getCookie("playertype");
 
     //console.log("passcode cookie: " + pc);
