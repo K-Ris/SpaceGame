@@ -1,15 +1,9 @@
-//document.getElementById("btn_log").addEventListener("click", function () {
-//
-//    location.href = '/user_log'
-//});
-document.getElementById("data_btn").addEventListener("click", function () {
-    location.href = '/crew_datahandler';
-});
-
-document.getElementById("quest_btn").addEventListener("click", function () {
-    location.href = '/crew_questhandler';
-});
-
+//login
+//get userstats
+//get all quests
+//show quests that are active first (green)
+//show quests that are available second (yellow)
+//show quests that are unavailable third (red)
 
 updateUser();
 
@@ -39,12 +33,6 @@ function updateUser() {
 
                     document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 
-
-                    document.getElementById("storage_max").innerHTML = responseJSON.storage_max;
-                    document.getElementById("storage_occ").innerHTML = responseJSON.storage_occ;
-                    document.getElementById("data_bar").value = responseJSON.storage_occ/responseJSON.storage_max * 100;
-                    document.getElementById("storage_all").innerHTML = responseJSON.storage_sum;
-
                     var questArray = [];
 
                     for(var i = 0; i < responseJSON.quest_names.length; i++){
@@ -71,6 +59,7 @@ function updateUser() {
 
 }
 
+
 function makeUL(array) {
     // Create the list element:
     var list = document.createElement('ul');
@@ -78,6 +67,7 @@ function makeUL(array) {
     for (var i = 0; i < array.length; i++) {
         // Create the list item:
         var item = document.createElement('li');
+        //item.id =
 
         // Set its contents:
         item.appendChild(document.createTextNode(array[i]));

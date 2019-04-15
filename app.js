@@ -13,6 +13,10 @@ var userLogRouter = require('./routes/user_log');
 var crewMainRouter = require('./routes/crew_main');
 var crewSelectRouter = require('./routes/crew_select');
 var loginhandlerRouter = require('./routes/loginhandler');
+var crewDataHandler = require('./routes/crew_datahandler');
+var updateHandler = require('./routes/updatehandler');
+var questHandler = require('./routes/crew_questhandler');
+
 
 var app = express();
 
@@ -32,5 +36,10 @@ app.use('/user_log', userLogRouter);
 app.use('/crew_main', crewMainRouter);
 app.use('/crew_select', crewSelectRouter);
 app.use('/loginhandler', loginhandlerRouter);
+app.use('/crew_datahandler', crewDataHandler);
+app.use('/updatehandler', updateHandler);
+app.use('/crew_questhandler', questHandler);
+
+
 
 module.exports = app;

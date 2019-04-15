@@ -99,7 +99,7 @@ function inputCode(code) {
                         var responsJSON = JSON.parse(req.responseText);
 
 
-                        setCookie("passcode", responsJSON.passcode, 1);
+                        setCookie("passcode_crew", responsJSON.passcode, 1);
                         setCookie("playertype", "crew", 1);
 
 
@@ -113,6 +113,8 @@ function inputCode(code) {
                     }
                 }
 
+                resetCode();
+
             }
         };
         req.open("POST", "/loginhandler", true);
@@ -122,7 +124,6 @@ function inputCode(code) {
 
         req.send("passcode="+passcodeReady + "&" + "requesttype=crew_login");
 
-        resetCode();
     }
 
 
@@ -133,8 +134,8 @@ function inputCode(code) {
 function resetCode() {
     passcode = ["0", "0", "0", "0"];
     passcounter = 0;
-    document.getElementById("p_code_1").innerHTML = "0";
-    document.getElementById("p_code_2").innerHTML = "0";
-    document.getElementById("p_code_3").innerHTML = "0";
-    document.getElementById("p_code_4").innerHTML = "0";
+    document.getElementById("p_code_1").innerHTML = "-";
+    document.getElementById("p_code_2").innerHTML = "-";
+    document.getElementById("p_code_3").innerHTML = "-";
+    document.getElementById("p_code_4").innerHTML = "-";
 }

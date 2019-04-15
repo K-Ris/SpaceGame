@@ -7,7 +7,7 @@ updateUser();
 
 function updateUser() {
 
-    var pc = getCookie("passcode");
+    var pc = getCookie("passcode_user");
     var lt = getCookie("playertype");
 
     //console.log("passcode cookie: " + pc);

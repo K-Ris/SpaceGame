@@ -1,4 +1,4 @@
-var passcode = ["0", "0", "0", "0"];
+var passcode = ["0", "0"];
 var passcounter = 0;
 
 
@@ -41,7 +41,11 @@ document.getElementById("btn_matrix_9").addEventListener("click", function () {
     inputCode(9);
 });
 
-document.getElementById("btn_matrix_O").addEventListener("click", function () {
+document.getElementById("btn_matrix_0").addEventListener("click", function () {
+    inputCode(0);
+});
+
+document.getElementById("btn_matrix_X").addEventListener("click", function () {
     resetCode();
 });
 
@@ -59,15 +63,8 @@ function inputCode(code) {
     if (passcounter == 1) {
         document.getElementById("p_code_1").innerHTML = code;
 
-    } else if (passcounter == 2) {
+    }else if (passcounter == 2) {
         document.getElementById("p_code_2").innerHTML = code;
-
-    }
-    else if (passcounter == 3) {
-        document.getElementById("p_code_3").innerHTML = code;
-
-    } else if (passcounter == 4) {
-        document.getElementById("p_code_4").innerHTML = code;
         //login
         //location.href='/crew_main'
 
@@ -87,7 +84,7 @@ function inputCode(code) {
 
                         var responsJSON = JSON.parse(req.responseText);
 
-                        setCookie("passcode_crew", responsJSON.passcode, 1);
+                        setCookie("passcode_user", responsJSON.passcode, 1);
                         //setCookie("playertype", "user", 1);
 
                         location.href='/crew_main';
@@ -101,6 +98,9 @@ function inputCode(code) {
                     }
                 }
 
+
+                resetCode();
+
             }
         };
         req.open("POST", "/loginhandler", true);
@@ -110,7 +110,6 @@ function inputCode(code) {
 
         req.send("passcode="+passcodeReady + "&" + "requesttype=user_login");
 
-        resetCode();
     }
 
 
@@ -119,11 +118,11 @@ function inputCode(code) {
 }
 
 function resetCode() {
-    passcode = ["0", "0", "0", "0"];
+    passcode = ["0", "0"];
     passcounter = 0;
-    document.getElementById("p_code_1").innerHTML = "0";
-    document.getElementById("p_code_2").innerHTML = "0";
-    document.getElementById("p_code_3").innerHTML = "0";
-    document.getElementById("p_code_4").innerHTML = "0";
+    document.getElementById("p_code_1").innerHTML = "-";
+    document.getElementById("p_code_2").innerHTML = "-";
+    //document.getElementById("p_code_3").innerHTML = "0";
+    //document.getElementById("p_code_4").innerHTML = "0";
 }
 
