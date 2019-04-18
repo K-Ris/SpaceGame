@@ -1,0 +1,12 @@
+body{
+    background-color: #111111;
+    color: #d5d328;
+    text-align: center;
+    font-size: xx-large;
+    font-family: "Roboticana";
+}
+
+@font-face {
+    font-family: "Roboticana";
+    src: url("/public/fonts/PressStart2P.ttf");
+}

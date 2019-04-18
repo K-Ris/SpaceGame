@@ -1,9 +1,7 @@
-//login
-//get userstats
-//get all quests
-//show quests that are active first (green)
-//show quests that are available second (yellow)
-//show quests that are unavailable third (red)
+//document.getElementById("btn_log").addEventListener("click", function () {
+//
+//    location.href = '/user_log'
+//});
 
 updateUser();
 
@@ -31,7 +29,13 @@ function updateUser() {
 
                     var responseJSON = JSON.parse(req.responseText);
 
-                    document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+                    //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+
+
+                    document.getElementById("storage_max").innerHTML = responseJSON.storage_max;
+                    document.getElementById("storage_occ").innerHTML = responseJSON.storage_occ;
+                    document.getElementById("data_bar").value = responseJSON.storage_occ/responseJSON.storage_max * 100;
+                    document.getElementById("storage_all").innerHTML = responseJSON.storage_sum;
 
                     var questArray = [];
 
@@ -40,7 +44,7 @@ function updateUser() {
                     }
 
 
-                    document.getElementById('quest_list').appendChild(makeUL(questArray));
+                    document.getElementById('todo_list').appendChild(makeUL(questArray));
 
                 } catch (err) {
                     console.log(err);
@@ -59,19 +63,16 @@ function updateUser() {
 
 }
 
-
 function makeUL(array) {
     // Create the list element:
-    var list = document.createElement('div');
+    var list = document.createElement('ul');
 
     for (var i = 0; i < array.length; i++) {
         // Create the list item:
-        var item = document.createElement('BUTTON');
-        //item.id =
+        var item = document.createElement('li');
 
         // Set its contents:
-        //item.appendChild(document.createTextNode(array[i]));
-        item.innerHTML = array[i];
+        item.appendChild(document.createTextNode(array[i]));
 
         // Add it to the list:
         list.appendChild(item);

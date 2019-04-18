@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal Status</title>
+    <link rel="stylesheet" href="/stylesheets/terminal/main.css">
+    <link rel="stylesheet" href="/stylesheets/terminal/t_status.css">
+</head>
+<body>
+
+<p>Terminal Status</p>
+
+<p id="demo">Daten</p>
+
+
+<div class="lead-container">
+    <table class="table" align="center">
+        <tr>
+            <td>
+                <p class="heading">Kapazität:</p>
+
+            </td>
+            <td>
+                <p id="storage_max">0</p>
+
+            </td>
+
+            <td>
+                <p class="heading">Belegt:</p>
+
+            </td>
+            <td>
+                <p id="storage_occ">0</p>
+            </td>
+    </table>
+
+
+    <table align="center">
+
+        <tr>
+            <td>
+                <progress id="data_bar" value="0" max="100"></progress>
+
+            </td>
+        </tr>
+    </table>
+    <table align="center">
+
+        <tr>
+            <td>
+                <p class="heading">Gesamt:</p>
+
+            </td>
+            <td>
+                <p id="storage_all">0</p>
+            </td>
+        </tr>
+    </table>
+    <table align="center">
+        <tr>
+            <td>
+                <progress id="online_bar" value="0" max="3000"></progress>
+
+            </td>
+
+        </tr>
+    </table>
+    <p class="heading">Zu tun</p>
+
+    <ul id="todo_list">
+    </ul>
+
+    <ul>
+        <li><button>Daten hochladen</button></li>
+        <li><button>Bei einem Problem helfen</button></li>
+        <li><button>Ins Logbuch schauen</button></li>
+        <li><button>Rangliste anschauen</button></li>
+    </ul>
+
+</div>
+
+
+<script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
+<script type="text/javascript" src="/javascripts/terminal/t_status.js"></script>
+
+</body>
+</html>
