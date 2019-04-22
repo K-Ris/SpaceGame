@@ -20,6 +20,8 @@ function updateUser() {
     var pc = getCookie("passcode_user");
     var lt = getCookie("playertype");
 
+    console.log(pc);
+
     //console.log("passcode cookie: " + pc);
     //console.log("playertype cookie: " + lt);
 

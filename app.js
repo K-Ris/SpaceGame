@@ -15,8 +15,9 @@ var crewSelectRouter = require('./routes/crew_select');
 var loginhandlerRouter = require('./routes/loginhandler');
 var crewDataHandlerRouter = require('./routes/crew_datahandler');
 var updateHandlerRouter = require('./routes/updatehandler');
-var questHandlerRouter = require('./routes/crew_questhandler');
+var questCrewHandlerRouter = require('./routes/crew_questhandler');
 var questManagerRouter = require('./routes/crew_questmanager');
+var questHandlerRouter = require('./routes/questhandler');
 
 var loginTerminalRouter = require('./routes/terminal/t_login');
 var statusTerminalRouter = require('./routes/terminal/t_status');
@@ -49,8 +50,10 @@ app.use('/crew_select', crewSelectRouter);
 app.use('/loginhandler', loginhandlerRouter);
 app.use('/crew_datahandler', crewDataHandlerRouter);
 app.use('/updatehandler', updateHandlerRouter);
-app.use('/crew_questhandler', questHandlerRouter);
+app.use('/crew_questhandler', questCrewHandlerRouter);
 app.use('/crew_questmanager', questManagerRouter);
+app.use('/questhandler', questHandlerRouter);
+
 
 app.use('/terminal/login', loginTerminalRouter);
 app.use('/terminal/status', statusTerminalRouter);
