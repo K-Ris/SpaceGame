@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+
 
 /* GET home page. */
 router.all('/', function(req, res, next) {
@@ -19,18 +21,14 @@ router.all('/', function(req, res, next) {
 
         db.on('error', console.error.bind(console, 'connection error:'));
         db.once('open', function() {
-            //console.log("Connected to DB");
-            //do operations which involve interacting with DB.
 
-            //var collection = db.collection('users');
-
-            //Handle Crew Login Attempt <---------------------------------------------------------------
-            if (requesttypeVar == "crew_login") {
+            if (requesttypeVar == "quest_download") {
 
                 var collection = db.collection('quests');
 
                 collection.find().toArray(function (err, result) {
-                    quests = result[0];
+                    quests = result;
+                    console.log(result[0]);
 
                     if(quests != undefined){
 

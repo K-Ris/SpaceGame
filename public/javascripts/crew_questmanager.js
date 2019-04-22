@@ -30,9 +30,6 @@ function getQuests() {
                 }
             }
 
-
-            resetCode();
-
         }
     };
     req.open("POST", "/questhandler", true);

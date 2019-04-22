@@ -51,10 +51,6 @@ function validateForm() {
         alert("Quest Id must be filled out");
         return false;
     }
-    else if (quest_name == "") {
-        alert("Quest Name must be filled out");
-        return false;
-    }
     else{
         console.log("call server");
         callServer(quest_id, quest_name, quest_stagecount, quest_department, quest_crew_id, quest_badge_req, quest_free_storage_req, quest_online_data_req,
