@@ -46,7 +46,7 @@ router.all('/', function(req, res, next) {
     var quest_reward_6_data_targetVar = req.body.quest_reward_6_data_target;
     var quest_reward_6_data_descVar = req.body.quest_reward_6_data_desc;
 
-    var quest_desc_stagesVar = req.body.quest_desc_stagesVar;
+    var quest_desc_stagesVar = req.body.quest_desc_stages;
 
     console.log("Questimporter Id: " +quest_idVar);
     console.log("Questimporter Name: " +quest_nameVar);
@@ -127,6 +127,12 @@ router.all('/', function(req, res, next) {
 
         }
 
+        var quest_desc_insert = {
+            quest_id: quest_idVar,
+            quest_name: quest_nameVar,
+            quest_stages: quest_desc_stagesVar
+        };
+
         var collection = db.collection('quests');
 
         collection.find({quest_id:quest_idVar}).toArray(function(err, result){
@@ -146,10 +152,48 @@ router.all('/', function(req, res, next) {
                         res.write("DB update Success!");
 
 
-                    }
-                    res.end();
-                    db.close();
-                });
+                        var collection2 = db.collection('quest_desc');
+
+                        collection2.find({quest_id: quest_idVar}).toArray(function (err, result2) {
+                            console.log("result2:"+JSON.stringify(result2[0]));
+
+                            if (result2[0] != undefined){
+
+                                console.log(quest_desc_insert.quest_stages)
+
+                                collection2.update({quest_id:quest_idVar}, {$set:quest_desc_insert}, function (err, result){
+                                    if (err){
+                                        console.log(err);
+                                        res.write(err);
+                                    }else {
+                                        console.log("Updated Desc successfully");
+                                        res.write("DB update Success!");
+                                    }
+                                    res.end();
+                                    db.close();
+                                });
+                            }
+                            else{
+                                collection2.insert([quest_desc_insert]), function (err, result3) {
+                                    if (err) {
+                                        console.log(err)
+                                        res.write('Insert error: ' + err);
+
+                                        db.close();
+                                        res.end();
+
+                                    } else {
+                                        console.log('Inserted new user!')
+                                        res.write('Success');
+
+
+                                    }
+                                }
+                            }
+                        });
+                            }
+                        });
+
 
             } else{
                 //quest does not exist - insert
@@ -169,8 +213,44 @@ router.all('/', function(req, res, next) {
                         console.log('Inserted new user!')
                         res.write('Success');
 
-                        db.close();
-                        res.end();
+                        var collection2 = db.collection('quest_desc');
+
+                        collection2.find({quest_id: quest_idVar}).toArray(function (err, result) {
+                            user = result[0];
+
+                            if (result[0] != undefined){
+
+                                collection2.update({quest_id:quest_idVar}, {$set:quest_desc_insert}, function (err, result){
+                                    if (err){
+                                        console.log(err);
+                                        res.write(err);
+                                    }else {
+                                        console.log("Updated Desc successfully");
+                                        res.write("DB update Success!");
+                                    }
+                                    res.end();
+                                    db.close();
+                                });
+                            }
+                            else{
+                                collection2.insert([quest_desc_insert]), function (err, result) {
+                                    if (err) {
+                                        console.log(err)
+                                        res.write('Insert error: ' + err);
+
+                                        db.close();
+                                        res.end();
+
+                                    } else {
+                                        console.log('Inserted new user!')
+                                        res.write('Success');
+
+
+                                    }
+                                }
+                            }
+                        });
+
                     }
 
                 });
