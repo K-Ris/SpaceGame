@@ -6,9 +6,10 @@ ul{
     width: 100%;
 }
 
-button
+#btn_quest
 {
+    float:left;
     height: 50px;
-    width: 100%;
+    width: 95%;
     text-align: center;
 }

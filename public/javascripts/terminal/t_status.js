@@ -1,7 +1,16 @@
-//document.getElementById("btn_log").addEventListener("click", function () {
-//
-//    location.href = '/user_log'
-//});
+document.getElementById("btn_upload").addEventListener("click", function () {
+
+    location.href = '/terminal/uploadAsk'
+});
+
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 37) {
+        alert('Left was pressed');
+    }
+    else if(event.keyCode == 39) {
+        alert('Right was pressed');
+    }
+});
 
 updateUser();
 

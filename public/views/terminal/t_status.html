@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Terminal Status</title>
     <link rel="stylesheet" href="/stylesheets/terminal/main.css">
+    <link rel="stylesheet" href="/stylesheets/terminal/stickyBottom.css">
     <link rel="stylesheet" href="/stylesheets/terminal/t_status.css">
 </head>
 <body>
@@ -71,12 +72,20 @@
     </ul>
 
     <ul>
-        <li><button>Daten hochladen</button></li>
-        <li><button>Bei einem Problem helfen</button></li>
-        <li><button>Ins Logbuch schauen</button></li>
-        <li><button>Rangliste anschauen</button></li>
+        <li><button class="0" id="btn_upload">Daten hochladen</button></li>
+        <li><button class="1" id="btn_quests">Bei einem Problem helfen</button></li>
+        <li><button class="2" id="btn_log">Ins Logbuch schauen</button></li>
+        <li><button class="3" id="btn_ranking">Rangliste anschauen</button></li>
     </ul>
+</div>
 
+<div class="footer">
+    <table>
+        <button class="btn_footer" id="btn_no">Ausloggen</button>
+        <button class="btn_footer" id="btn_up">^</button>
+        <button class="btn_footer" id="btn_down">v</button>
+        <button class="btn_footer" id="btn_yes">Ja</button>
+    </table>
 </div>
 
 

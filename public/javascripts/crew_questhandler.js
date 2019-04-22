@@ -4,6 +4,14 @@
 //show quests that are active first (green)
 //show quests that are available second (yellow)
 //show quests that are unavailable third (red)
+document.addEventListener('click',function(e){
+    if(e.target && e.target.id== 'btn_quest'){
+        //do something
+        console.log(e.target.getAttribute('data-internalid'));
+        setCookie("quest_active", e.target.getAttribute('data-internalid'), 1);
+        location.href='/crew_questmanager';
+    }
+});
 
 updateUser();
 
@@ -33,11 +41,8 @@ function updateUser() {
 
                     document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 
-                    var questArray = [];
+                    var questArray = responseJSON.quest_names;
 
-                    for(var i = 0; i < responseJSON.quest_names.length; i++){
-                        questArray.push(responseJSON.quest_names[i].quest_name);
-                    }
 
 
                     document.getElementById('quest_list').appendChild(makeUL(questArray));
@@ -61,6 +66,8 @@ function updateUser() {
 
 
 function makeUL(array) {
+
+
     // Create the list element:
     var list = document.createElement('div');
 
@@ -71,7 +78,9 @@ function makeUL(array) {
 
         // Set its contents:
         //item.appendChild(document.createTextNode(array[i]));
-        item.innerHTML = array[i];
+        item.innerHTML = array[i].quest_name;
+        item.setAttribute("data-internalid", array[i].quest_id);
+        item.id = "btn_quest";
 
         // Add it to the list:
         list.appendChild(item);

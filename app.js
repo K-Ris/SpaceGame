@@ -16,10 +16,16 @@ var loginhandlerRouter = require('./routes/loginhandler');
 var crewDataHandlerRouter = require('./routes/crew_datahandler');
 var updateHandlerRouter = require('./routes/updatehandler');
 var questHandlerRouter = require('./routes/crew_questhandler');
+var questManagerRouter = require('./routes/crew_questmanager');
 
 var loginTerminalRouter = require('./routes/terminal/t_login');
 var statusTerminalRouter = require('./routes/terminal/t_status');
+var uploadAskTerminalRouter = require('./routes/terminal/t_uploadAsk');
+var uploadQuestionTerminalRouter = require('./routes/terminal/t_uploadQuestion');
+var debugLoginTerminalRouter = require('./routes/terminal/t_debuglogin');
 
+var questImporterToolsRouter = require('./routes/tools/tool_questimporter');
+var questImporterHandlerRouter = require('./routes/tools/tool_questimporterhandler');
 
 
 
@@ -44,9 +50,17 @@ app.use('/loginhandler', loginhandlerRouter);
 app.use('/crew_datahandler', crewDataHandlerRouter);
 app.use('/updatehandler', updateHandlerRouter);
 app.use('/crew_questhandler', questHandlerRouter);
+app.use('/crew_questmanager', questManagerRouter);
 
 app.use('/terminal/login', loginTerminalRouter);
 app.use('/terminal/status', statusTerminalRouter);
+app.use('/terminal/uploadAsk', uploadAskTerminalRouter);
+app.use('/terminal/uploadQuestion', uploadQuestionTerminalRouter);
+app.use('/terminal/debugLogin', debugLoginTerminalRouter);
+
+app.use('/tools/questimporter', questImporterToolsRouter);
+app.use('/tools/questimporthandler', questImporterHandlerRouter);
+
 
 
 app.use('/fonts', express.static('./public/fonts'));
