@@ -24,6 +24,7 @@ router.all('/', function(req, res, next) {
         db.on('error', console.error.bind(console, 'connection error:'));
         db.once('open', function() {
 
+            //Download all quests------------------------------------------------------
             if (requesttypeVar == "quest_download") {
 
                 var collection = db.collection('quests');
@@ -49,6 +50,7 @@ router.all('/', function(req, res, next) {
 
                 })
             }
+            //download single quest----------------------------------------------------
             else if(requesttypeVar == "quest_single"){
                 var collection = db.collection('quests');
                 console.log("quest: " + questIdVar)
@@ -73,6 +75,9 @@ router.all('/', function(req, res, next) {
 
 
                 })
+            }
+            else if(requesttypeVar == "quest_update"){
+                
             }
         });
             }
