@@ -57,6 +57,10 @@ document.getElementById("btn_matrix_O").addEventListener("click", function () {
     resetCode();
 });
 
+document.getElementById("btn_matrix_0").addEventListener("click", function () {
+    inputCode("0");
+});
+
 //document.getElementById("btn_back").addEventListener("click", function(){
 //    resetCode();
 //    location.href='/login'

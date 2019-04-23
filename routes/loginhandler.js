@@ -110,16 +110,16 @@ router.all('/', function(req, res, next) {
                         var searchedQuestIds = [];
 
                         for(var i = 0; i < user.quests.length; i++){
-                            searchedQuestIds.push(user.quests[i].quest_id);
+                            searchedQuestIds.push(parseInt(user.quests[i].quest_id));
                         }
 
-                        console.log("searchedQuets: " + searchedQuestIds);
-
+                        console.log("searchedQuest: " + searchedQuestIds[0]);
+                        //console.log(db);
 
                         collection2.find({quest_id:{ $in: searchedQuestIds}}).toArray(function(err, result){
                             quests = result;
 
-                            //console.log(result);
+                            console.log("quests: " + result);
 
                             if (result != undefined){
 
@@ -188,7 +188,7 @@ router.all('/', function(req, res, next) {
 
                                     //db.close();
                                     //res.end();
-                                })
+                                });
 
 
 
@@ -217,7 +217,7 @@ router.all('/', function(req, res, next) {
 
                             //db.close();
                             //res.end();
-                        })
+                        });
 
 
                     } else{

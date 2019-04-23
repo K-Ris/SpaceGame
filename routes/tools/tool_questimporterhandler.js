@@ -6,8 +6,8 @@ var db = mongoose.connection;
 
 /* GET home page. */
 router.all('/', function(req, res, next) {
-
     var quest_idVar = req.body.quest_id;
+
     var quest_nameVar = req.body.quest_name;
     var quest_stagecountVar = req.body.quest_stagecount;
     var quest_departmentVar = req.body.quest_department;

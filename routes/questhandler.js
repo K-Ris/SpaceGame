@@ -7,9 +7,11 @@ var mongoose = require('mongoose');
 router.all('/', function(req, res, next) {
     var passcodeVar = req.body.passcode;
     var requesttypeVar = req.body.requesttype;
+    var questIdVar = req.body.questId;
 
-    console.log("Loginhandler Requesttype: " +requesttypeVar);
-    console.log("Loginhandler Passcode: " +passcodeVar);
+    console.log("Questhandler Requesttype: " +requesttypeVar);
+    console.log("Questhandler Passcode: " +passcodeVar);
+    console.log("Questhandler QuestId: "+ questIdVar);
 
     if(passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null"){
 
@@ -38,6 +40,31 @@ router.all('/', function(req, res, next) {
                         res.end();
                     } else {
                         console.log("Crew login failed, user not existing");
+                        res.write("notfound");
+
+                        db.close();
+                        res.end();
+                    }
+
+
+                })
+            }
+            else if(requesttypeVar == "quest_single"){
+                var collection = db.collection('quests');
+                console.log("quest: " + questIdVar)
+
+                collection.find({quest_id: parseInt(questIdVar)}).toArray(function(err, result2){
+                    quest = result2[0];
+                    console.log(result2);
+
+                    if(quest != undefined){
+
+                        res.json(quest);
+
+                        db.close();
+                        res.end();
+                    } else {
+                        console.log("failed, quest not existing");
                         res.write("notfound");
 
                         db.close();

@@ -13,9 +13,10 @@ document.addEventListener('click',function(e){
     }
 });
 
-updateUser();
+updateAllQuests();
+//updateUserQuests();
 
-function updateUser() {
+function updateUserQuests() {
 
     var pc = getCookie("passcode_user");
     var lt = getCookie("playertype");
@@ -63,6 +64,58 @@ function updateUser() {
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     req.send("passcode=" + pc + "&" + "requesttype=user_stats");
+
+}
+
+function updateAllQuests() {
+
+    var pc = getCookie("passcode_user");
+    var lt = getCookie("playertype");
+
+    console.log(pc);
+
+    //console.log("passcode cookie: " + pc);
+    //console.log("playertype cookie: " + lt);
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Post successful");
+
+            if (req.responseText == "notfound") {
+                document.getElementById("demo").innerHTML = "Falscher Passcode";
+                //Cookie löschen und Autologout
+            } else if (req.responseText == "nologindata") {
+                //Delete Cookies and return to loginscreen
+            } else {
+
+                try {
+
+                    var responseJSON = JSON.parse(req.responseText);
+
+                    document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+                    console.log(JSON.stringify(responseJSON));
+
+                    var questArray = responseJSON;
+
+
+
+                    document.getElementById('quest_list_all').appendChild(makeUL(questArray));
+
+                } catch (err) {
+                    console.log(err);
+
+                    document.getElementById("demo").innerHTML = err.message;
+
+                }
+            }
+
+        }
+    };
+    req.open("POST", "/questhandler", true);
+    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    req.send("passcode=" + pc + "&" + "requesttype=quest_download");
 
 }
 
