@@ -121,7 +121,7 @@ router.all('/', function(req, res, next) {
 
                             console.log("quests: " + result);
 
-                            if (result != undefined){
+                            if (result != undefined && result != "" && result != []){
 
                                 console.log("logged in");
                                 console.log("questresult: "+ result[0].quest_name);

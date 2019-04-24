@@ -40,6 +40,9 @@ document.getElementById("button100+").addEventListener("click", function () {
 document.getElementById("submit_btn").addEventListener("click", function () {
     submitData();
 });
+document.getElementById("back_btn").addEventListener("click", function () {
+    location.href='/crew_main';
+});
 
 
 function submitData() {

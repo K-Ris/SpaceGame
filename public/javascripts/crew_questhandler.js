@@ -14,7 +14,7 @@ document.addEventListener('click',function(e){
 });
 
 updateAllQuests();
-//updateUserQuests();
+updateUserQuests();
 
 function updateUserQuests() {
 
@@ -42,13 +42,13 @@ function updateUserQuests() {
 
                     var responseJSON = JSON.parse(req.responseText);
 
-                    document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+                    //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 
                     var questArray = responseJSON.quest_names;
 
+                    //document.getElementById('quest_list').appendChild(makeUL(questArray));
 
-
-                    document.getElementById('quest_list').appendChild(makeUL(questArray));
+                    //loop through questlist and make active quests green
 
                 } catch (err) {
                     console.log(err);
@@ -63,7 +63,7 @@ function updateUserQuests() {
     req.open("POST", "/loginhandler", true);
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    req.send("passcode=" + pc + "&" + "requesttype=user_stats");
+    req.send("passcode=" + pc + "&" + "requesttype=user_login");
 
 }
 
@@ -93,7 +93,7 @@ function updateAllQuests() {
 
                     var responseJSON = JSON.parse(req.responseText);
 
-                    document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+                    //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
                     console.log(JSON.stringify(responseJSON));
 
                     var questArray = responseJSON;
