@@ -4,6 +4,9 @@
 //show quests that are active first (green)
 //show quests that are available second (yellow)
 //show quests that are unavailable third (red)
+
+var userQuestArray;
+
 document.addEventListener('click',function(e){
     if(e.target && e.target.id== 'btn_quest'){
         //do something
@@ -13,7 +16,6 @@ document.addEventListener('click',function(e){
     }
 });
 
-updateAllQuests();
 updateUserQuests();
 
 function updateUserQuests() {
@@ -44,7 +46,9 @@ function updateUserQuests() {
 
                     //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 
-                    var questArray = responseJSON.quest_names;
+                    userQuestArray = responseJSON.quests;
+
+                    updateAllQuests();
 
                     //document.getElementById('quest_list').appendChild(makeUL(questArray));
 
@@ -136,6 +140,19 @@ function makeUL(array) {
         item.innerHTML = array[i].quest_name;
         item.setAttribute("data-internalid", array[i].quest_id);
         item.id = "btn_quest";
+
+
+        console.log(userQuestArray);
+        for(var j = 0; j < userQuestArray.length; j++){
+            console.log(userQuestArray[j] + "  " + array[i].quest_id);
+            if(userQuestArray[j].quest_id == array[i].quest_id){
+
+                item.style.background='#70cf79';
+                break;
+            }
+        }
+
+
 
         // Add it to the list:
         list.appendChild(item);

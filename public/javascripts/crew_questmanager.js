@@ -162,7 +162,7 @@ function setQuest(){
                         var responsJSON = JSON.parse(req.responseText);
                         //document.getElementById("demo").innerHTML = JSON.stringify(responsJSON);
                         questdata = responsJSON;
-
+                        location.href='/crew_main';
                     }
                     catch(err){
                         console.log(err);
@@ -202,7 +202,7 @@ function showRewards(){
                 try{
 
                     var responsJSON = JSON.parse(req.responseText);
-
+                    location.href='/crew_main';
                 }
                 catch(err){
                     console.log(err);

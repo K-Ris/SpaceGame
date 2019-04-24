@@ -8,7 +8,7 @@ router.all('/', function (req, res, next) {
     var passcodeVar = req.body.passcode;
     var passcodeCrewVar = req.body.passcodeCrew;
     var requesttypeVar = req.body.requesttype;
-    var questIdVar = req.body.questId;
+    var questIdVar = parseInt(req.body.questId);
 
     console.log("Questhandler Requesttype: " + requesttypeVar);
     console.log("Questhandler Passcode Crew: " + passcodeCrewVar);
@@ -33,7 +33,7 @@ router.all('/', function (req, res, next) {
 
                 collection.find().toArray(function (err, result) {
                     quests = result;
-                    console.log(result[0]);
+                    //console.log(result[0]);
 
                     if (quests != undefined) {
 
