@@ -181,20 +181,10 @@ router.all('/', function (req, res, next) {
 
                                         var questArray = user['quests'];
 
-                                        questArray.forEach(function(emp, index){
-                                            if(emp.quest_id==questIdVar){
-                                                delete questArray[index];
-                                            }
+
+                                        questArray = questArray.filter(function(item) {
+                                            return item.quest_id != questIdVar;
                                         });
-
-                                        console.log("array: " + JSON.stringify(questArray));
-
-                                        for(var i = 0; i < questArray.length; i++){
-                                            if(questArray[i] == null){
-                                                questArray = [];
-                                                break;
-                                            }
-                                        }
 
                                         user['quests'] = questArray;
 
