@@ -37,7 +37,7 @@ function updateUser() {
 
                     var responseJSON = JSON.parse(req.responseText);
 
-                    document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+                    //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 
 
                     document.getElementById("storage_max").innerHTML = responseJSON.storage_max;
