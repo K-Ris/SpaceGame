@@ -121,6 +121,7 @@ router.all('/', function(req, res, next) {
                     }
                 });
             }
+            //Terminal upload Data
             else if(requesttypeVar == "upload_data"){
                 var collection = db.collection('crew');
 
@@ -129,7 +130,7 @@ router.all('/', function(req, res, next) {
 
                     if (result[0] != undefined){
 
-                        console.log( "Crew Login dbresult:" + result[0]);
+                        console.log( "Crew Login dbresult:" + JSON.stringify(result[0]));
                         console.log("Crew logged in!");
                         console.log("Crew result: "+ result[0].passcode);
                         delete crew["_id"];
@@ -141,52 +142,76 @@ router.all('/', function(req, res, next) {
 
                             if (result[0] != undefined) {
 
-                                console.log("User Login dbresult:" + result[0]);
+                                console.log("User Login dbresult:" + JSON.stringify(result[0]));
                                 console.log("User logged in!");
                                 console.log("User result: " + result[0].passcode);
                                 delete user["_id"];
 
-                                if (dataAmountVar != undefined) {
+                                let dataOcc = parseInt(user.storage_occ);
 
-                                    if (dataAmountVar != "") {
-                                        let dataOcc = parseInt(user.storage_occ);
-                                        let dataCap = parseInt(user.storage_max);
-                                        let dataAmount = parseInt(dataAmountVar);
+                                let dataPlus = 100;
 
 
-                                        user['storage_occ'] = 0;
-                                        user['storage_cap'] = user['storage_cap'] + 100;
-                                        user['storage_sum'] = user['storage_sum'] + dataOcc;
+                                user['storage_occ'] = 0;
 
-                                        user['storage_occ'] = dataOcc;
+                                if(dataOcc <= 100){
+                                    dataPlus = 100;
+                                }
+                                else if(dataOcc <= 200){
+                                    dataPlus = 100;
+                                }
+                                else if(dataOcc <= 300){
+                                    dataPlus = 150;
+                                }
+                                else if(dataOcc <= 400){
+                                    dataPlus = 150;
+                                }
+                                else if(dataOcc <= 500){
+                                    dataPlus = 150;
+                                }
+                                else if(dataOcc <= 600){
+                                    dataPlus = 200;
+                                }
+                                else if(dataOcc <= 700){
+                                    dataPlus = 250;
+                                }
+                                else if(dataOcc <= 800){
+                                    dataPlus = 250;
+                                }
+                                else if(dataOcc <= 900){
+                                    dataPlus = 250;
+                                }
+                                else if(dataOcc >= 1000){
+                                    dataPlus = 300;
+                                }
+                                else {
+                                    dataPlus = 100;
+                                }
 
 
-                                        collection2.update({passcode: passcodeVar}, {$set: user}, function (err, result) {
-                                            if (err) {
-                                                console.log(err);
-                                                res.write(err);
+                                console.log("Data Plus: " + dataPlus);
+                                user['storage_max'] = user['storage_max'] + dataPlus;
+                                user['storage_sum'] = user['storage_sum'] + (dataOcc - 50);
 
-                                                db.close();
-                                                res.end();
-                                            } else {
-                                                console.log("Updated successfully");
-                                                res.json(user);
+                                console.log("user: " + JSON.stringify(user))
 
-                                                db.close();
-                                                res.end();
 
-                                            }
-                                        });
+                                collection2.update({passcode: passcodeVar}, {$set: user}, function (err, result) {
+                                    if (err) {
+                                        console.log(err);
+                                        res.write(err);
 
+                                        db.close();
+                                        res.end();
                                     } else {
-                                        console.log("no free Storage");
+                                        console.log("Updated successfully");
+                                        res.json(user);
 
-                                        res.write("nofreestorage");
                                         db.close();
                                         res.end();
 
                                     }
-                                }
+                                });
                             }
                         });
 

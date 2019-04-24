@@ -31,19 +31,9 @@ function uploadData() {
                 document.getElementById("demo").innerHTML = "Kein Freier Speicher!";
             }
             else {
+                location.href = '/terminal/uploadQuestion'
 
-                try{
 
-                    var responsJSON = JSON.parse(req.responseText);
-
-                    document.getElementById("demo").innerHTML = JSON.stringify(responsJSON);
-                }
-                catch(err){
-                    console.log(err);
-
-                    document.getElementById("demo").innerHTML = err.message;
-
-                }
             }
 
         }
