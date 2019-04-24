@@ -66,6 +66,16 @@ document.getElementById("btn_matrix_0").addEventListener("click", function () {
 //    location.href='/login'
 //});
 
+//autologin();
+
+function autologin(){
+
+    var passcode = getCookie("passcode_crew");
+
+    if(passcode != null && passcode != undefined && passcode != ""){
+
+    }
+}
 
 function inputCode(code) {
     passcode[passcounter] = code;
