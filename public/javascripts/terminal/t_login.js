@@ -76,7 +76,7 @@ function inputCode(code) {
 
                 }
             }
-            resetCode();
+            //resetCode();
 
         }
     };

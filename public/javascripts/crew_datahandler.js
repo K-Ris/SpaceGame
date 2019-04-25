@@ -32,11 +32,6 @@ document.getElementById("button100+").addEventListener("click", function () {
     document.getElementById("data_manipulator").innerHTML = datamanipulator;
 });
 
-document.getElementById("button100+").addEventListener("click", function () {
-    datamanipulator += 100;
-    document.getElementById("data_manipulator").innerHTML = datamanipulator;
-});
-
 document.getElementById("submit_btn").addEventListener("click", function () {
 
     submitData();

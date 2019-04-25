@@ -7,6 +7,9 @@ document.addEventListener('keydown', function(event) {
     if(event.keyCode == 13) {
         location.href = '/terminal/uploadAsk'
     }
+    else if(event.keyCode == 27){
+        location.href = '/terminal/login'
+    }
 });
 
 updateUser();
