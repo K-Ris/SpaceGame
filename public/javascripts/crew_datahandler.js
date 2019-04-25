@@ -38,11 +38,14 @@ document.getElementById("button100+").addEventListener("click", function () {
 });
 
 document.getElementById("submit_btn").addEventListener("click", function () {
+
     submitData();
 });
 document.getElementById("back_btn").addEventListener("click", function () {
     location.href='/crew_main';
 });
+
+
 
 
 function submitData() {
@@ -69,7 +72,9 @@ function submitData() {
 
                         var responsJSON = JSON.parse(req.responseText);
 
-                        document.getElementById("demo").innerHTML = JSON.stringify(responsJSON);
+                        //document.getElementById("demo").innerHTML = JSON.stringify(responsJSON);
+                        location.href='/crew_main';
+
                     }
                     catch(err){
                         console.log(err);
@@ -87,7 +92,21 @@ function submitData() {
         passcodeCrewVar = getCookie("passcode_crew");
         passcodeVar = getCookie("passcode_user");
 
-        req.send("passcode="+passcodeVar + "&" + "requesttype=update_data" + "&" + "passcodecrew=" +  passcodeCrewVar  + "&" + "dataamount=" + datamanipulator);
+        var checkedValue = document.getElementById("dataselector").checked;
+
+        var updateMethod = "update_data";
+
+        if(checkedValue){
+            updateMethod = "extend_data";
+        }
+        else{
+            updateMethod = "update_data";
+        }
+
+
+        console.log("checked Value: " + updateMethod);
+
+        req.send("passcode="+passcodeVar + "&" + "requesttype=" + updateMethod + "&" + "passcodecrew=" +  passcodeCrewVar  + "&" + "dataamount=" + datamanipulator);
 
         datamanipulator = 0;
         document.getElementById("data_manipulator").innerHTML = datamanipulator;

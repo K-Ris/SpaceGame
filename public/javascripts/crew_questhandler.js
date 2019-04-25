@@ -103,7 +103,6 @@ function updateAllQuests() {
                     var questArray = responseJSON;
 
 
-
                     document.getElementById('quest_list_all').appendChild(makeUL(questArray));
 
                 } catch (err) {
@@ -126,37 +125,107 @@ function updateAllQuests() {
 
 function makeUL(array) {
 
+    console.log(array);
+    console.log(userQuestArray);
 
+    //Allgemeine Liste wird nicht angezeigt!
     // Create the list element:
     var list = document.createElement('div');
 
-    for (var i = 0; i < array.length; i++) {
-        // Create the list item:
-        var item = document.createElement('BUTTON');
-        //item.id =
+    var crewid = getCookie("id_crew");
+    //console.log("Crew ID: " + crewid);
 
-        // Set its contents:
-        //item.appendChild(document.createTextNode(array[i]));
-        item.innerHTML = array[i].quest_name;
-        item.setAttribute("data-internalid", array[i].quest_id);
-        item.id = "btn_quest";
+    //console.log(userQuestArray.length)
+    for(var i = 0; i < userQuestArray.length; i++){
+        //console.log("quest array: " + userQuestArray[i].quest_id);
+        //console.log(array.length);
+
+        for(var j = 0; j < array.length; j++){
+            //console.log("array id: " + array[j].quest_id);
+
+            if (userQuestArray[i].quest_id == array[j].quest_id) {
+                // Create the list item:
+                var item = document.createElement('BUTTON');
+                //item.id =
+
+                // Set its contents:
+                //item.appendChild(document.createTextNode(array[i]));
+                item.innerHTML = array[j].quest_name;
+                item.setAttribute("data-internalid", array[j].quest_id);
+                item.id = "btn_quest";
 
 
-        console.log(userQuestArray);
-        for(var j = 0; j < userQuestArray.length; j++){
-            console.log(userQuestArray[j] + "  " + array[i].quest_id);
-            if(userQuestArray[j].quest_id == array[i].quest_id){
 
-                item.style.background='#70cf79';
+
+                // Add it to the list:
+                list.appendChild(item);
+
+                item.style.background = '#70cf79';
                 break;
             }
         }
 
 
-
-        // Add it to the list:
-        list.appendChild(item);
     }
+
+    //console.log(array.length)
+    for (var k = 0; k < array.length; k++) {
+
+        //console.log("array: " + array[k].quest_crew_id);
+
+
+        if(parseInt(array[k].quest_crew_id) == crewid){
+            //füge quest zur liste
+
+            // Create the list item:
+            var item = document.createElement('BUTTON');
+            //item.id =
+
+            // Set its contents:
+            //item.appendChild(document.createTextNode(array[i]));
+            item.innerHTML = array[k].quest_name;
+            item.setAttribute("data-internalid", array[k].quest_id);
+            item.id = "btn_quest";
+
+            // Add it to the list:
+            list.appendChild(item);
+        }
+
+
+
+        /*
+        for (var i = 0; i < array.length; i++) {
+            //console.log(userQuestArray);
+            for (var j = 0; j < userQuestArray.length; j++) {
+                //console.log(userQuestArray[j] + "  " + array[i].quest_id);
+                if (userQuestArray[j].quest_id == array[i].quest_id) {
+
+                    // Create the list item:
+                    var item = document.createElement('BUTTON');
+                    //item.id =
+
+                    // Set its contents:
+                    //item.appendChild(document.createTextNode(array[i]));
+                    item.innerHTML = array[i].quest_name;
+                    item.setAttribute("data-internalid", array[i].quest_id);
+                    item.id = "btn_quest";
+
+
+
+
+                    // Add it to the list:
+                    list.appendChild(item);
+
+                    item.style.background = '#70cf79';
+                    break;
+                }
+            }
+        }
+*/
+
+
+    }
+
 
     // Finally, return the constructed list:
     return list;

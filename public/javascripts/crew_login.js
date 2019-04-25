@@ -112,9 +112,12 @@ function inputCode(code) {
 
                         var responsJSON = JSON.parse(req.responseText);
 
+                        console.log(JSON.stringify(responsJSON));
+
 
                         setCookie("passcode_crew", responsJSON.passcode, 1);
                         setCookie("playertype", "crew", 1);
+                        setCookie("id_crew", responsJSON.crew_id , 1,);
 
 
                         location.href='/crew_select';

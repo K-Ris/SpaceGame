@@ -121,6 +121,104 @@ router.all('/', function(req, res, next) {
                     }
                 });
             }
+            //extend Data Storage
+            else if(requesttypeVar == "extend_data"){
+                var collection = db.collection('crew');
+
+                collection.find({passcode:passcodeCrewVar}).toArray(function(err, result){
+                    crew = result[0];
+
+                    if (result[0] != undefined){
+
+                        console.log( "Crew Login dbresult:" + result[0]);
+                        console.log("Crew logged in!");
+                        console.log("Crew result: "+ result[0].passcode);
+                        delete crew["_id"];
+
+                        var collection2 = db.collection('users');
+
+                        collection2.find({passcode:passcodeVar}).toArray(function(err, result){
+                            user = result[0];
+
+                            if (result[0] != undefined){
+
+                                console.log( "User Login dbresult:" + result[0]);
+                                console.log("User logged in!");
+                                console.log("User result: "+ result[0].passcode);
+                                delete user["_id"];
+
+                                if (dataAmountVar != undefined){
+
+                                    if(dataAmountVar != ""){
+                                        //let dataOcc = parseInt(user.storage_occ);
+                                        let dataCap = parseInt(user.storage_max);
+                                        let dataAmount = parseInt(dataAmountVar);
+
+
+                                        dataCap += dataAmount;
+
+                                        if(dataCap < 400){
+                                            dataCap = 400;
+                                        }
+
+                                        console.log("max: "+dataCap);
+
+                                        user['storage_max']=dataCap;
+
+
+                                        collection2.update({passcode:passcodeVar}, {$set:user}, function (err, result){
+                                            if (err){
+                                                console.log(err);
+                                                res.write(err);
+
+                                                db.close();
+                                                res.end();
+                                            }else{
+                                                console.log("Updated successfully");
+                                                res.json(user);
+
+                                                db.close();
+                                                res.end();
+
+                                            }
+                                        });
+                                        /*
+                                        if((dataCap + dataAmount) >= 400){
+
+
+
+                                        }else{
+                                            console.log("no free Storage");
+
+                                            res.write("datastorageminimum");
+                                            db.close();
+                                            res.end();
+
+                                        }
+
+                                         */
+                                    }
+                                }
+
+                            } else{
+                                console.log("User login failed, user not existing");
+                                res.write("notfound");
+
+                                db.close();
+                                res.end();
+                            }
+
+                        });
+
+                    } else{
+                        console.log("Crew login failed, user not existing");
+                        res.write("notfound");
+
+                        db.close();
+                        res.end();
+                    }
+                });
+            }
             //Terminal upload Data
             else if(requesttypeVar == "upload_data"){
                 var collection = db.collection('crew');
@@ -225,6 +323,103 @@ router.all('/', function(req, res, next) {
 
                     });
 
+            }
+            //Terminal upload Data
+            else if(requesttypeVar == "finish_quest"){
+                var collection = db.collection('crew');
+
+                collection.find({passcode:passcodeCrewVar}).toArray(function(err, result){
+                    crew = result[0];
+
+                    if (result[0] != undefined){
+
+                        console.log( "Crew Login dbresult:" + result[0]);
+                        console.log("Crew logged in!");
+                        console.log("Crew result: "+ result[0].passcode);
+                        delete crew["_id"];
+
+                        var collection2 = db.collection('users');
+
+                        collection2.find({passcode:passcodeVar}).toArray(function(err, result){
+                            user = result[0];
+
+                            if (result[0] != undefined){
+
+                                console.log( "User Login dbresult:" + result[0]);
+                                console.log("User logged in!");
+                                console.log("User result: "+ result[0].passcode);
+                                delete user["_id"];
+
+                                if (dataAmountVar != undefined){
+
+                                    if(dataAmountVar != ""){
+                                        let dataOcc = parseInt(user.storage_occ);
+                                        let dataCap = parseInt(user.storage_max);
+                                        let dataAmount = parseInt(dataAmountVar);
+
+
+                                        if((dataOcc + dataAmount) <= dataCap){
+
+                                            dataOcc += dataAmount;
+
+                                            if(dataOcc < 0){
+                                                dataOcc = 0;
+                                            }
+
+                                            console.log("occ"+dataOcc);
+
+                                            user['storage_occ']=dataOcc;
+
+
+                                            collection2.update({passcode:passcodeVar}, {$set:user}, function (err, result){
+                                                if (err){
+                                                    console.log(err);
+                                                    res.write(err);
+
+                                                    db.close();
+                                                    res.end();
+                                                }else{
+                                                    console.log("Updated successfully");
+                                                    res.json(user);
+
+                                                    db.close();
+                                                    res.end();
+
+                                                }
+                                            });
+
+                                        }else{
+                                            console.log("no free Storage");
+
+                                            res.write("nofreestorage");
+                                            db.close();
+                                            res.end();
+
+                                        }
+
+                                        //remove quest
+                                        //add badge
+                                    }
+                                }
+
+                            } else{
+                                console.log("User login failed, user not existing");
+                                res.write("notfound");
+
+                                db.close();
+                                res.end();
+                            }
+
+                        });
+
+                    } else{
+                        console.log("Crew login failed, user not existing");
+                        res.write("notfound");
+
+                        db.close();
+                        res.end();
+                    }
+                });
             }
         });
 

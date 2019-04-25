@@ -148,7 +148,8 @@ router.all('/', function (req, res, next) {
                     }
                 });
             }
-            else if(requesttypeVar == "quest_finish"){
+
+            else if(requesttypeVar == "quest_cancel"){
                 var collection = db.collection('crew');
 
                 collection.find({passcode:passcodeCrewVar}).toArray(function(err, result){
