@@ -61,7 +61,7 @@ function inputCode(code) {
 
                     var responsJSON = JSON.parse(req.responseText);
 
-                    document.getElementById("demo").innerHTML = req.responseText;
+                   // document.getElementById("demo").innerHTML = req.responseText;
 
                     setCookie("passcode_user", responsJSON.passcode, 1);
                     setCookie("playertype", "user", 1);

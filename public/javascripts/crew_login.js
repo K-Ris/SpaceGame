@@ -72,49 +72,53 @@ function autologin(){
 
     var passcode = getCookie("passcode_crew");
 
-    var req = new XMLHttpRequest();
-    req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log("Post successful");
+    if(passcode != null && passcode != "" && passcode != undefined){
 
-            //save cookie
-            //document.cookie("passcode="+passcodeReady);
-            if(req.responseText == "notfound"){
-                document.getElementById("demo").innerHTML = "Falscher Passcode";
-            }
-            else {
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Post successful");
 
-                try{
-
-                    var responsJSON = JSON.parse(req.responseText);
-
-                    console.log(JSON.stringify(responsJSON));
-
-
-                    setCookie("passcode_crew", responsJSON.passcode, 1);
-                    setCookie("playertype", "crew", 1);
-                    setCookie("id_crew", responsJSON.crew_id , 1,);
-
-
-                    location.href='/crew_select';
+                //save cookie
+                //document.cookie("passcode="+passcodeReady);
+                if(req.responseText == "notfound"){
+                    document.getElementById("demo").innerHTML = "Falscher Passcode";
                 }
-                catch(err){
-                    console.log(err);
+                else {
 
-                    document.getElementById("demo").innerHTML = err.message;
+                    try{
 
+                        var responsJSON = JSON.parse(req.responseText);
+
+                        console.log(JSON.stringify(responsJSON));
+
+
+                        setCookie("passcode_crew", responsJSON.passcode, 1);
+                        setCookie("playertype", "crew", 1);
+                        setCookie("id_crew", responsJSON.crew_id , 1,);
+
+
+                        location.href='/crew_select';
+                    }
+                    catch(err){
+                        console.log(err);
+
+                        document.getElementById("demo").innerHTML = err.message;
+
+                    }
                 }
+
+                resetCode();
+
             }
-
-            resetCode();
-
-        }
-    };
-    req.open("POST", "/loginhandler", true);
-    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        };
+        req.open("POST", "/loginhandler", true);
+        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 
-    req.send("passcode="+passcode + "&" + "requesttype=crew_login");
+        req.send("passcode="+passcode + "&" + "requesttype=crew_login");
+    }
+
 
 }
 
