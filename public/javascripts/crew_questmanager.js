@@ -292,7 +292,7 @@ function finishQuest(reward){
                     var responsJSON = JSON.parse(req.responseText);
 
                     //document.getElementById("demo").innerHTML = JSON.stringify(responsJSON);
-                    location.href='/crew_main';
+                    cancelQuest();
 
                 }
                 catch(err){
@@ -311,16 +311,9 @@ function finishQuest(reward){
     passcodeCrewVar = getCookie("passcode_crew");
     passcodeVar = getCookie("passcode_user");
 
-    var checkedValue = document.getElementById("dataselector").checked;
+    //var checkedValue = document.getElementById("dataselector").checked;
 
     var updateMethod = "update_data";
-
-    if(checkedValue){
-        updateMethod = "extend_data";
-    }
-    else{
-        updateMethod = "update_data";
-    }
 
 
     console.log("checked Value: " + updateMethod);

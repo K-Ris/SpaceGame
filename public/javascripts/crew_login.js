@@ -66,15 +66,56 @@ document.getElementById("btn_matrix_0").addEventListener("click", function () {
 //    location.href='/login'
 //});
 
-//autologin();
+autologin();
 
 function autologin(){
 
     var passcode = getCookie("passcode_crew");
 
-    if(passcode != null && passcode != undefined && passcode != ""){
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Post successful");
 
-    }
+            //save cookie
+            //document.cookie("passcode="+passcodeReady);
+            if(req.responseText == "notfound"){
+                document.getElementById("demo").innerHTML = "Falscher Passcode";
+            }
+            else {
+
+                try{
+
+                    var responsJSON = JSON.parse(req.responseText);
+
+                    console.log(JSON.stringify(responsJSON));
+
+
+                    setCookie("passcode_crew", responsJSON.passcode, 1);
+                    setCookie("playertype", "crew", 1);
+                    setCookie("id_crew", responsJSON.crew_id , 1,);
+
+
+                    location.href='/crew_select';
+                }
+                catch(err){
+                    console.log(err);
+
+                    document.getElementById("demo").innerHTML = err.message;
+
+                }
+            }
+
+            resetCode();
+
+        }
+    };
+    req.open("POST", "/loginhandler", true);
+    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+
+    req.send("passcode="+passcode + "&" + "requesttype=crew_login");
+
 }
 
 function inputCode(code) {
