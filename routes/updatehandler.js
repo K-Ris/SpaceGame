@@ -61,44 +61,37 @@ router.all('/', function(req, res, next) {
                                         let dataAmount = parseInt(dataAmountVar);
 
 
-                                        if((dataOcc + dataAmount) <= dataCap){
+                                        dataOcc += dataAmount;
 
-                                            dataOcc += dataAmount;
-
-                                            if(dataOcc < 0){
-                                                dataOcc = 0;
-                                            }
-
-                                            console.log("occ"+dataOcc);
-
-                                            user['storage_occ']=dataOcc;
-
-
-                                            collection2.update({passcode:passcodeVar}, {$set:user}, function (err, result){
-                                                if (err){
-                                                    console.log(err);
-                                                    res.write(err);
-
-                                                    db.close();
-                                                    res.end();
-                                                }else{
-                                                    console.log("Updated successfully");
-                                                    res.json(user);
-
-                                                    db.close();
-                                                    res.end();
-
-                                                }
-                                            });
-
-                                        }else{
-                                            console.log("no free Storage");
-
-                                            res.write("nofreestorage");
-                                            db.close();
-                                            res.end();
-
+                                        if(dataOcc < 0){
+                                            dataOcc = 0;
                                         }
+
+                                        if(dataOcc > dataCap){
+                                            dataOcc = dataCap;
+                                        }
+
+                                        console.log("occ"+dataOcc);
+
+                                        user['storage_occ']=dataOcc;
+
+
+                                        collection2.update({passcode:passcodeVar}, {$set:user}, function (err, result){
+                                            if (err){
+                                                console.log(err);
+                                                res.write(err);
+
+                                                db.close();
+                                                res.end();
+                                            }else{
+                                                console.log("Updated successfully");
+                                                res.json(user);
+
+                                                db.close();
+                                                res.end();
+
+                                            }
+                                        });
                                     }
                                 }
 
