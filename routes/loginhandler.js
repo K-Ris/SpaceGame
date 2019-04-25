@@ -116,108 +116,120 @@ router.all('/', function(req, res, next) {
                         console.log("searchedQuest: " + searchedQuestIds[0]);
                         //console.log(db);
 
-                        collection2.find({quest_id:{ $in: searchedQuestIds}}).toArray(function(err, result){
-                            quests = result;
+                        try{
+                            collection2.find({quest_id:{ $in: searchedQuestIds}}).toArray(function(err, result){
+                                quests = result;
 
-                            console.log("quests: " + result);
+                                console.log("quests: " + result);
 
-                            if (result != undefined && result != "" && result != []){
+                                if (result != undefined && result != "" && result != []){
 
-                                console.log("logged in");
-                                console.log("questresult: "+ result[0].quest_name);
+                                    console.log("logged in");
+                                    console.log("questresult: "+ result[0].quest_name);
 
-                                var questResult = result;
+                                    var questResult = result;
 
-                                user["badge_names"] = [];
-                                //console.log(user.quests[0].quest_id);
+                                    user["badge_names"] = [];
+                                    //console.log(user.quests[0].quest_id);
 
-                                var collection3 = db.collection('badges');
+                                    var collection3 = db.collection('badges');
 
-                                var searchedBadgeIds = [];
+                                    var searchedBadgeIds = [];
 
-                                for(var i = 0; i < user.badges.length; i++){
-                                    searchedBadgeIds.push(user.badges[i]);
-                                }
-
-                                console.log("searchedBadgeIds: " + searchedBadgeIds);
-
-
-                                collection3.find({badge_id:{ $in: searchedBadgeIds}}).toArray(function(err, result){
-                                    badges = result;
-
-                                    //console.log(result);
-
-                                    if (result != undefined){
-
-                                        console.log("logged in");
-                                        console.log("badgesresult: "+ result[0].badge_name);
-
-
-                                        for(var j = 0; j < questResult.length; j++){
-                                            user["quest_names"].push({"quest_id":questResult[j].quest_id, "quest_name":questResult[j].quest_name});
-
-                                        }
-
-                                        for(var j = 0; j < result.length; j++){
-                                            user["badge_names"].push({"badge_id":result[j].badge_id, "badge_name":result[j].badge_name});
-
-                                        }
-
-                                        //
-
-                                        console.log(JSON.stringify(user));
-
-                                        res.json(user);
-
-                                        db.close();
-                                        res.end();
-
-                                    } else{
-                                        console.log("user exists, but no quests found");
-                                        //still join quests, but with empty value
-
-                                        user["quest_names"] = [];
-
-                                        res.json(user);
-
-                                        db.close();
-                                        res.end();
+                                    for(var i = 0; i < user.badges.length; i++){
+                                        searchedBadgeIds.push(user.badges[i]);
                                     }
+
+                                    console.log("searchedBadgeIds: " + searchedBadgeIds);
+
+
+                                    collection3.find({badge_id:{ $in: searchedBadgeIds}}).toArray(function(err, result){
+                                        badges = result;
+
+                                        //console.log(result);
+
+                                        if (result != undefined){
+
+                                            console.log("logged in");
+                                            console.log("badgesresult: "+ result[0].badge_name);
+
+
+                                            for(var j = 0; j < questResult.length; j++){
+                                                user["quest_names"].push({"quest_id":questResult[j].quest_id, "quest_name":questResult[j].quest_name});
+
+                                            }
+
+                                            for(var j = 0; j < result.length; j++){
+                                                user["badge_names"].push({"badge_id":result[j].badge_id, "badge_name":result[j].badge_name});
+
+                                            }
+
+                                            //
+
+                                            console.log(JSON.stringify(user));
+
+                                            res.json(user);
+
+                                            db.close();
+                                            res.end();
+
+                                        } else{
+                                            console.log("user exists, but no quests found");
+                                            //still join quests, but with empty value
+
+                                            user["quest_names"] = [];
+
+                                            res.json(user);
+
+                                            db.close();
+                                            res.end();
+                                        }
+
+                                        //res.json(user);
+
+                                        //db.close();
+                                        //res.end();
+                                    });
+
+
+
+                                    //
+
+                                    //console.log(JSON.stringify(user));
 
                                     //res.json(user);
 
                                     //db.close();
                                     //res.end();
-                                });
 
+                                } else{
+                                    console.log("user exists, but no quests found");
+                                    //still join quests, but with empty value
 
+                                    user["quest_names"] = [];
 
-                                //
+                                    res.json(user);
 
-                                //console.log(JSON.stringify(user));
+                                    db.close();
+                                    res.end();
+                                }
 
                                 //res.json(user);
 
                                 //db.close();
                                 //res.end();
+                            });
+                        }
+                        catch(e){
+                            console.log(e);
+                            console.log(JSON.stringify(user));
 
-                            } else{
-                                console.log("user exists, but no quests found");
-                                //still join quests, but with empty value
+                            res.json(user);
 
-                                user["quest_names"] = [];
+                            db.close();
+                            res.end();
+                        }
 
-                                res.json(user);
-
-                                db.close();
-                                res.end();
-                            }
-
-                            //res.json(user);
-
-                            //db.close();
-                            //res.end();
-                        });
 
 
                     } else{
