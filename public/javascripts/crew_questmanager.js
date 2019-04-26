@@ -23,7 +23,7 @@ document.addEventListener('click',function(e){
     if(e.target && e.target.id== 'btn_reward'){
         //do something
         console.log(e.target.getAttribute('data-internalid'));
-        finishQuest(e.target.getAttribute('data-internalid'));
+        finishQuest(questdata.badge_id, e.target.getAttribute('data-internalid'));
     }
     else if(e.target && e.target.id == 'btn_submitAllies'){
         //ally button pressed
@@ -267,7 +267,7 @@ function showRewards() {
 
 }
 
-function finishQuest(reward){
+function finishQuest(badge, reward){
     //call questhandler with "quest_finish"
     //first finish player
     //then go throug ally list
@@ -318,7 +318,7 @@ function finishQuest(reward){
 
     console.log("checked Value: " + updateMethod);
 
-    req.send("passcode="+passcodeVar + "&" + "requesttype=finish_quest" + "&" + "passcodecrew=" +  passcodeCrewVar  + "&" + "dataamount=" + reward);
+    req.send("passcode="+passcodeVar + "&" + "requesttype=finish_quest" + "&" + "passcodecrew=" +  passcodeCrewVar  + "&" + "dataamount=" + reward + "&" + "badgeid=" + badge + "&" + "questid=" + questdata.quest_id);
 
     datamanipulator = 0;
     document.getElementById("data_manipulator").innerHTML = datamanipulator;
@@ -339,6 +339,7 @@ function makeUL(array) {
         //item.appendChild(document.createTextNode(array[i]));
         item.innerHTML = array[i].data_desc + " reward: " +array[i].data_reward;
         item.setAttribute("data-internalid", array[i].data_reward);
+        item.setAttribute("data-badgeid", array[i].badge_id);
         item.id = "btn_reward";
 
 

@@ -128,6 +128,8 @@ function makeUL(array) {
     console.log(array);
     console.log(userQuestArray);
 
+    var  questlist = [];
+
     //Allgemeine Liste wird nicht angezeigt!
     // Create the list element:
     var list = document.createElement('div');
@@ -139,6 +141,8 @@ function makeUL(array) {
     for(var i = 0; i < userQuestArray.length; i++){
         //console.log("quest array: " + userQuestArray[i].quest_id);
         //console.log(array.length);
+        questlist = questlist + userQuestArray[i].quest_id;
+        console.log("questlist: " +questlist);
 
         for(var j = 0; j < array.length; j++){
             //console.log("array id: " + array[j].quest_id);
@@ -173,8 +177,8 @@ function makeUL(array) {
 
         //console.log("array: " + array[k].quest_crew_id);
 
-
         if(parseInt(array[k].quest_crew_id) == crewid){
+
             //füge quest zur liste
 
             // Create the list item:

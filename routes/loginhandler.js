@@ -81,10 +81,11 @@ router.all('/', function(req, res, next) {
                     } else{
                         console.log("login failed, user not existing");
                         res.write("notfound");
+
+                        db.close();
+                        res.end();
                     }
 
-                    db.close();
-                    res.end();
                 })
             }
             // Get User Stats <----------------------------------------------------------------------------

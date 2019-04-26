@@ -12,11 +12,25 @@ router.all('/', function(req, res, next) {
     var passcodeCrewVar = req.body.passcodecrew;
     var requesttypeVar = req.body.requesttype;
     var dataAmountVar = req.body.dataamount;
+    var questIdVar = req.body.questid
+    var badgeIdVar = req.body.badgeid;
 
-    console.log("Loginhandler Requesttype: " +requesttypeVar);
-    console.log("Loginhandler Passcode: " +passcodeVar);
-    console.log("Loginhandler Passcode Crew: " +passcodeCrewVar);
-    console.log("Loginhandler Dataamount: " +dataAmountVar);
+    //werte abfangen
+    if(dataAmountVar == undefined)
+    dataAmountVar = 0;
+
+    if(badgeIdVar == undefined)
+    badgeIdVar = 0;
+
+    if(questIdVar == undefined)
+        questIdVar = 0;
+
+    console.log("Updatehandler Requesttype: " +requesttypeVar);
+    console.log("Updatehandler Passcode: " +passcodeVar);
+    console.log("Updatehandler Passcode Crew: " +passcodeCrewVar);
+    console.log("Updatehandler Dataamount: " +dataAmountVar);
+    console.log("Updatehandler badgeId: " +badgeIdVar);
+    console.log("Updatehandler questId: " +questIdVar);
 
     if(passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null" && passcodeCrewVar != undefined && passcodeCrewVar != "null"){
 
@@ -364,6 +378,22 @@ router.all('/', function(req, res, next) {
                                         console.log("occ"+dataOcc);
 
                                         user['storage_occ']=dataOcc;
+
+                                        user['badges'].push(badgeIdVar);
+
+
+                                        var questArray = user['quests'];
+
+                                        user['quests_done'].push(questIdVar);
+
+
+                                        questArray = questArray.filter(function(item) {
+                                            return item.quest_id != questIdVar;
+                                        });
+
+                                        user['quests'] = questArray;
+
+
 
 
                                         collection2.update({passcode:passcodeVar}, {$set:user}, function (err, result){

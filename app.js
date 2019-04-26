@@ -27,8 +27,8 @@ var debugLoginTerminalRouter = require('./routes/terminal/t_debuglogin');
 
 var questImporterToolsRouter = require('./routes/tools/tool_questimporter');
 var questImporterHandlerRouter = require('./routes/tools/tool_questimporterhandler');
-
-
+var dbtransferRouter = require('./routes/tools/dbtransfer_router');
+var dbtransfer = require('./routes/tools/dbtransfer');
 
 var app = express();
 
@@ -63,7 +63,8 @@ app.use('/terminal/debugLogin', debugLoginTerminalRouter);
 
 app.use('/tools/questimporter', questImporterToolsRouter);
 app.use('/tools/questimporthandler', questImporterHandlerRouter);
-
+app.use('/tools/dbtransfer', dbtransferRouter);
+app.use('/tools/dbtransferhandler', dbtransfer);
 
 
 app.use('/fonts', express.static('./public/fonts'));
