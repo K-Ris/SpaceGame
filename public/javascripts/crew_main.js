@@ -37,7 +37,7 @@ function updateUser() {
 
                     var responseJSON = JSON.parse(req.responseText);
 
-                    //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+                    document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 
 
                     document.getElementById("storage_max").innerHTML = responseJSON.storage_max;
@@ -46,13 +46,22 @@ function updateUser() {
                     document.getElementById("storage_all").innerHTML = responseJSON.storage_sum;
 
                     var questArray = [];
+                    var badgeArray = [];
 
                     for(var i = 0; i < responseJSON.quest_names.length; i++){
                         questArray.push(responseJSON.quest_names[i].quest_name);
                     }
 
+                    for(var i = 0; i < responseJSON.badge_names.length; i++){
+                        badgeArray.push(responseJSON.badge_names[i].badge_name);
+                    }
+
+                    console.log(badgeArray)
+
 
                     document.getElementById('todo_list').appendChild(makeUL(questArray));
+
+                    document.getElementById('badge_list').appendChild(makeUL(badgeArray));
 
                 } catch (err) {
                     console.log(err);

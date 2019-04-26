@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
+const mongo = require('mongodb').MongoClient;
 
 /* GET home page. */
 router.all('/', function(req, res, next) {
@@ -14,8 +14,182 @@ router.all('/', function(req, res, next) {
     console.log("Loginhandler Requesttype: " +requesttypeVar);
     console.log("Loginhandler Passcode: " +passcodeVar);
 
+
     if(passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null"){
 
+        var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
+
+        mongo.connect(dbHost, (err, client) => {
+            if (err) {
+                console.log(err)
+                return
+            }
+
+            const db = client.db('spacemazeproduction_db')
+
+            const collection_crew = db.collection('crew')
+            const collection_users = db.collection('users')
+            const collection_quests = db.collection('quests')
+            const collection_badge = db.collection('badges')
+
+
+            if (requesttypeVar == "crew_login") {
+
+                collection_crew.findOne({passcode: passcodeVar}, (err, item) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+                        let user = item;
+                        console.log( "Crew Login dbresult:" + item);
+                        console.log("Crew logged in!");
+                        console.log("Crew result: "+ item.passcode);
+                        delete user["_id"];
+                        res.json(user);
+
+                        client.close();
+                        res.end();
+                    }
+
+
+                })
+            }
+            else if(requesttypeVar == "user_login"){
+                collection_users.findOne({passcode: passcodeVar}, (err, item) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+                        let user = item;
+                        console.log( "Crew Login dbresult:" + item);
+                        console.log("Crew logged in!");
+                        console.log("Crew result: "+ item.passcode);
+                        delete user["_id"];
+                        res.json(user);
+
+                        client.close();
+                        res.end();
+                    }
+
+
+                })
+            }
+            else if(requesttypeVar == "user_stats"){
+
+                collection_users.findOne({passcode: passcodeVar}, (err, item) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+                        let user = item;
+
+                        let searchedQuestIds = [];
+
+                        for(var i = 0; i < user.quests.length; i++){
+                            searchedQuestIds.push(parseInt(user.quests[i].quest_id));
+                        }
+
+                        collection_quests.find({quest_id:{ $in: searchedQuestIds}}).toArray((err, items) => {
+                            if (err) {
+                                console.log(err);
+                                client.close();
+                                res.write(err);
+                                res.end();
+                            } else {
+                                console.log(items)
+
+                                let quests = items;
+
+                                if (quests != undefined) {
+
+                                    user["badge_names"] = [];
+                                    user["quest_names"] = [];
+
+                                    var searchedBadgeIds = [];
+
+                                    console.log("user: " + JSON.stringify(quests))
+
+                                    for(var j = 0; j < quests.length; j++){
+                                        user["quest_names"].push({"quest_id":quests[j].quest_id, "quest_name":quests[j].quest_name});
+
+                                    }
+
+                                    for(var i = 0; i < user.badges.length; i++){
+                                        searchedBadgeIds.push(user.badges[i]);
+                                    }
+
+                                    console.log("searchedBadgeIds: " + searchedBadgeIds);
+
+                                    collection_badge.find({badge_id:{ $in: searchedBadgeIds}}).toArray((err, items) => {
+                                        if (err) {
+                                            console.log(err);
+                                            client.close();
+                                            res.write(err);
+                                            res.end();
+                                        } else {
+                                            let badges = items;
+
+                                            //console.log(result);
+
+                                            if (items != undefined){
+
+                                                console.log("logged in");
+                                                console.log("badgesresult: "+ items[0].badge_name);
+
+
+
+                                                for(var j = 0; j < items.length; j++){
+                                                    user["badge_names"].push({"badge_id":items[j].badge_id, "badge_name":items[j].badge_name});
+
+                                                }
+
+
+                                                res.json(user);
+
+                                                client.close();
+                                                res.end();
+
+                                            } else{
+                                                console.log("user exists, but no badges found");
+                                                //still join quests, but with empty value
+
+                                                user["quest_names"] = [];
+
+                                                res.json(user);
+
+                                                client.close();
+                                                res.end();
+                                            }
+                                        }
+
+                                    })
+
+                                } else {
+                                    //
+                                    console.log("quests not defined!");
+                                    client.close();
+                                    res.write(user);
+                                    res.end();
+                                }
+                            }
+
+                        })
+                    }
+
+
+                })
+            }
+        })
+    }
+
+
+/*
         var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
         var options = {
             server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
@@ -255,11 +429,7 @@ router.all('/', function(req, res, next) {
 
 
         });
-    }else{
-
-        res.write("nologindata");
-        res.end();
-    }
+        */
 
 
 

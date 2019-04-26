@@ -68,7 +68,7 @@ router.all('/', function (req, res, next) {
                             } else {
                                 console.log(item)
 
-                                user = item;
+                                let user = item;
 
                                 if (user != undefined) {
 
@@ -141,7 +141,8 @@ router.all('/', function (req, res, next) {
 
 
                 })
-            } else if (requesttypeVar == "extend_data") {
+            }
+            else if (requesttypeVar == "extend_data") {
                 collection_crew.findOne({passcode: passcodeCrewVar}, (err, items) => {
                     if (err) {
                         console.log(err);
@@ -158,7 +159,7 @@ router.all('/', function (req, res, next) {
                             } else {
                                 console.log(item)
 
-                                user = item;
+                                let user = item;
 
                                 if (user != undefined) {
 
@@ -246,7 +247,7 @@ router.all('/', function (req, res, next) {
                             } else {
                                 console.log(item)
 
-                                user = item;
+                                let user = item;
 
                                 if (user != undefined) {
 
@@ -341,7 +342,7 @@ router.all('/', function (req, res, next) {
                             } else {
                                 console.log(item)
 
-                                user = item;
+                                let user = item;
 
                                 if (user != undefined) {
 
@@ -436,7 +437,7 @@ router.all('/', function (req, res, next) {
                             } else {
                                 console.log(item)
 
-                                user = item;
+                                let user = item;
 
                                 if (user != undefined) {
 
@@ -459,7 +460,7 @@ router.all('/', function (req, res, next) {
 
                                     user['storage_occ']=dataOcc;
 
-                                    user['badges'].push(badgeIdVar);
+                                    user['badges'].push(parseInt(badgeIdVar));
 
                                     var questArray = user['quests'];
 
