@@ -35,8 +35,12 @@ router.all('/', function(req, res, next) {
     if(passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null" && passcodeCrewVar != undefined && passcodeCrewVar != "null"){
 
         var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
+        var options = {
+            server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+            replset: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }
+        };
 
-        mongoose.connect(dbHost);
+        mongoose.connect(dbHost, options);
 
         var db = mongoose.connection;
 
@@ -57,67 +61,76 @@ router.all('/', function(req, res, next) {
 
                         var collection2 = db.collection('users');
 
-                        collection2.find({passcode:passcodeVar}).toArray(function(err, result){
-                            user = result[0];
+                        try{
 
-                            if (result[0] != undefined){
+                            collection2.find({passcode:passcodeVar}).toArray(function(err, result){
+                                user = result[0];
 
-                                console.log( "User Login dbresult:" + result[0]);
-                                console.log("User logged in!");
-                                console.log("User result: "+ result[0].passcode);
-                                delete user["_id"];
+                                if (result[0] != undefined){
 
-                                if (dataAmountVar != undefined){
+                                    console.log( "User Login dbresult:" + result[0]);
+                                    console.log("User logged in!");
+                                    console.log("User result: "+ result[0].passcode);
+                                    delete user["_id"];
 
-                                    if(dataAmountVar != ""){
-                                        let dataOcc = parseInt(user.storage_occ);
-                                        let dataCap = parseInt(user.storage_max);
-                                        let dataAmount = parseInt(dataAmountVar);
+                                    if (dataAmountVar != undefined){
 
-
-                                        dataOcc += dataAmount;
-
-                                        if(dataOcc < 0){
-                                            dataOcc = 0;
-                                        }
-
-                                        if(dataOcc > dataCap){
-                                            dataOcc = dataCap;
-                                        }
-
-                                        console.log("occ"+dataOcc);
-
-                                        user['storage_occ']=dataOcc;
+                                        if(dataAmountVar != ""){
+                                            let dataOcc = parseInt(user.storage_occ);
+                                            let dataCap = parseInt(user.storage_max);
+                                            let dataAmount = parseInt(dataAmountVar);
 
 
-                                        collection2.update({passcode:passcodeVar}, {$set:user}, function (err, result){
-                                            if (err){
-                                                console.log(err);
-                                                res.write(err);
+                                            dataOcc += dataAmount;
 
-                                                db.close();
-                                                res.end();
-                                            }else{
-                                                console.log("Updated successfully");
-                                                res.json(user);
-
-                                                db.close();
-                                                res.end();
-
+                                            if(dataOcc < 0){
+                                                dataOcc = 0;
                                             }
-                                        });
+
+                                            if(dataOcc > dataCap){
+                                                dataOcc = dataCap;
+                                            }
+
+                                            console.log("occ"+dataOcc);
+
+                                            user['storage_occ']=dataOcc;
+
+
+                                            collection2.update({passcode:passcodeVar}, {$set:user}, function (err, result){
+                                                if (err){
+                                                    console.log(err);
+                                                    res.write(err);
+
+                                                    db.close();
+                                                    res.end();
+                                                }else{
+                                                    console.log("Updated successfully");
+                                                    res.json(user);
+
+                                                    db.close();
+                                                    res.end();
+
+                                                }
+                                            });
+                                        }
                                     }
+
+                                } else{
+                                    console.log("User login failed, user not existing");
+                                    res.write("notfound");
+
+                                    db.close();
+                                    res.end();
                                 }
 
-                            } else{
-                                console.log("User login failed, user not existing");
-                                res.write("notfound");
+                            });
+                        }
+                        catch(e){
+                            res.write("dbfail");
 
-                                db.close();
-                                res.end();
-                            }
-
-                        });
+                            db.close();
+                            res.end();
+                        }
 
                     } else{
                         console.log("Crew login failed, user not existing");

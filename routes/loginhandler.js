@@ -19,8 +19,12 @@ router.all('/', function(req, res, next) {
     if(passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null"){
 
         var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
+        var options = {
+            server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+            replset: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }
+        };
 
-        mongoose.connect(dbHost);
+        mongoose.connect(dbHost, options);
 
         var db = mongoose.connection;
 
