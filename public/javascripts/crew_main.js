@@ -37,9 +37,11 @@ function updateUser() {
 
                     var responseJSON = JSON.parse(req.responseText);
 
-                    document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
+                    //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 
 
+                    document.getElementById("player_id").innerHTML = responseJSON.passcode;
+                    document.getElementById("player_name").innerHTML = responseJSON.username;
                     document.getElementById("storage_max").innerHTML = responseJSON.storage_max;
                     document.getElementById("storage_occ").innerHTML = responseJSON.storage_occ;
                     document.getElementById("data_bar").value = responseJSON.storage_occ/responseJSON.storage_max * 100;

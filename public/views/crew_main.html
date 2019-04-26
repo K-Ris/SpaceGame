@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/stylesheets/navbar.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/user_stats.css">
+
 </head>
 <body>
 <ul class="navUl">
@@ -14,10 +16,21 @@
     <li><a id="logout_link" href="/login">Logout</a></li>
 </ul>
 
-<p>Spieler Übersicht</p>
+<h1>Spieler Übersicht</h1>
 
-<p id="demo">Daten</p>
+<div class="player_info" id="player_info">
+    <p>Player ID:</p>
+    <p id="player_id"></p>
 
+</div>
+
+<div class="player_info">
+
+    <p>Player Name:</p>
+    <p id="player_name"></p>
+</div>
+
+<h2 id="demo">Daten</h2>
 <p>Kapazität:</p>
 <p id="storage_max">0</p>
 

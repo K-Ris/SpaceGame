@@ -17,3 +17,8 @@
 .title_todo{
     font-weight: bold;
 }
+
+.player_info{
+    width:33%;
+    display:inline-block;
+}

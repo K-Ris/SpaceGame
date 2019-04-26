@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
+const mongo = require('mongodb').MongoClient;
 
 
 /* GET home page. */
@@ -16,6 +17,167 @@ router.all('/', function (req, res, next) {
     console.log("Questhandler QuestId: " + questIdVar);
 
     if (requesttypeVar != undefined && requesttypeVar != "null") {
+
+        var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
+
+        mongo.connect(dbHost, (err, client) => {
+            if (err) {
+                console.log(err)
+                return
+            }
+
+            const db = client.db('spacemazeproduction_db')
+
+            const collection_crew = db.collection('crew')
+            const collection_users = db.collection('users')
+            const collection_quests = db.collection('quests')
+
+
+            if (requesttypeVar == "quest_download") {
+
+                collection_quests.find().toArray((err, items) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+                        let quests = items;
+                        delete quests["_id"];
+                        res.json(quests);
+
+                        client.close();
+                        res.end();
+                    }
+
+
+                })
+            }
+            else if (requesttypeVar == "quest_single") {
+
+                collection_quests.findOne({quest_id: parseInt(questIdVar)}, (err, item) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+                        let quest = item;
+                        delete quest["_id"];
+                        res.json(quest);
+
+                        client.close();
+                        res.end();
+                    }
+
+
+                })
+            }
+            else if(requesttypeVar == "quest_update"){
+                collection_crew.findOne({passcode: passcodeCrewVar}, (err, item) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+
+                        collection_users.findOne({passcode: passcodeVar}, (err, item) => {
+                            if (err) {
+                                console.log(err);
+                                client.close();
+                                res.write(err);
+                                res.end();
+                            } else {
+                                let user = item;
+                                delete user["_id"];
+
+                                user['quests'].push({quest_id:questIdVar});
+
+                                collection_users.updateOne({passcode: passcodeVar}, {'$set': user}, (err, item) => {
+                                    if (err) {
+                                        console.log(err);
+                                        client.close();
+                                        res.write(err);
+                                        res.end();
+
+                                    } else {
+                                        //console.log(item);
+                                        client.close();
+                                        res.json(user);
+                                        res.end();
+                                    }
+                                })
+                            }
+
+
+                        })
+                    }
+
+
+                })
+            }
+            else if(requesttypeVar == "quest_cancel"){
+                collection_crew.findOne({passcode: passcodeCrewVar}, (err, item) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+
+                        collection_users.findOne({passcode: passcodeVar}, (err, item) => {
+                            if (err) {
+                                console.log(err);
+                                client.close();
+                                res.write(err);
+                                res.end();
+                            } else {
+                                let user = item;
+                                delete user["_id"];
+
+                                var questArray = user['quests'];
+
+
+                                questArray = questArray.filter(function(item) {
+                                    return item.quest_id != questIdVar;
+                                });
+
+                                user['quests'] = questArray;
+
+                                collection_users.updateOne({passcode: passcodeVar}, {'$set': user}, (err, item) => {
+                                    if (err) {
+                                        console.log(err);
+                                        client.close();
+                                        res.write(err);
+                                        res.end();
+
+                                    } else {
+                                        //console.log(item);
+                                        client.close();
+                                        res.json(user);
+                                        res.end();
+                                    }
+                                })
+                            }
+
+
+                        })
+                    }
+
+
+                })
+            }
+        })
+
+
+
+
+
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 
         var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
         var options = {
@@ -82,7 +244,7 @@ router.all('/', function (req, res, next) {
 
                 })
             }
-            //Add new quest to player
+            //Add new quest to player-----------------------------------------------------------------------------
             else if (requesttypeVar == "quest_update") {
                 var collection = db.collection('crew');
 
@@ -153,6 +315,7 @@ router.all('/', function (req, res, next) {
                 });
             }
 
+            //-------------------------------------------------------------------------------------------------------
             else if(requesttypeVar == "quest_cancel"){
                 var collection = db.collection('crew');
 
@@ -233,6 +396,7 @@ router.all('/', function (req, res, next) {
                 });
             }
         });
+        */
     }
 });
 
