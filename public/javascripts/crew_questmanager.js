@@ -23,7 +23,7 @@ document.addEventListener('click',function(e){
     if(e.target && e.target.id== 'btn_reward'){
         //do something
         console.log(e.target.getAttribute('data-internalid'));
-        finishQuest(questdata.badge_id, e.target.getAttribute('data-internalid'));
+        finishQuest(e.target.getAttribute('data-badgeid'), e.target.getAttribute('data-internalid'));
     }
     else if(e.target && e.target.id == 'btn_submitAllies'){
         //ally button pressed
@@ -289,7 +289,7 @@ function finishQuest(badge, reward){
 
                 try{
 
-                    var responsJSON = JSON.parse(req.responseText);
+                    //var responsJSON = JSON.parse(req.responseText);
 
                     //document.getElementById("demo").innerHTML = JSON.stringify(responsJSON);
                     cancelQuest();
@@ -316,12 +316,12 @@ function finishQuest(badge, reward){
     var updateMethod = "update_data";
 
 
-    console.log("checked Value: " + updateMethod);
+    console.log("Quest badge reward: " + badge);
 
     req.send("passcode="+passcodeVar + "&" + "requesttype=finish_quest" + "&" + "passcodecrew=" +  passcodeCrewVar  + "&" + "dataamount=" + reward + "&" + "badgeid=" + badge + "&" + "questid=" + questdata.quest_id);
 
-    datamanipulator = 0;
-    document.getElementById("data_manipulator").innerHTML = datamanipulator;
+    //datamanipulator = 0;
+    //document.getElementById("data_manipulator").innerHTML = datamanipulator;
 }
 
 function makeUL(array) {

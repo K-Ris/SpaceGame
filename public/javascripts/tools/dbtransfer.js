@@ -36,6 +36,8 @@ function submitData(passcode, data) {
             }
             else {
 
+                console.log(req.responseText);
+
                 var data1 = datas[Math.floor(Math.random()*datas.length)];
                 var passcode1 = passcodes[Math.floor(Math.random()*passcodes.length)];
                 stressTest();
@@ -59,9 +61,6 @@ function submitData(passcode, data) {
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     req.send("passcode="+passcode + "&" + "requesttype=" + "update_data" + "&" + "passcodecrew=" +  "2345"  + "&" + "dataamount=" + data);
-
-    datamanipulator = 0;
-    document.getElementById("data_manipulator").innerHTML = datamanipulator;
 
 
 }

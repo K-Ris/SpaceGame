@@ -65,7 +65,7 @@ function submitData() {
 
                     try{
 
-                        var responsJSON = JSON.parse(req.responseText);
+                        //var responsJSON = JSON.parse(req.responseText);
 
                         //document.getElementById("demo").innerHTML = JSON.stringify(responsJSON);
                         location.href='/crew_main';

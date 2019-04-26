@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-var db = mongoose.connection;
-
 /* GET home page. */
 router.all('/', function(req, res, next) {
 
