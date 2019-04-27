@@ -409,57 +409,60 @@ router.all('/', function (req, res, next) {
                                     console.log("User result: " + item.passcode);
                                     delete user["_id"];
 
+                                    if(user['storage_occ'] <= 0){
 
-                                    let dataOcc = parseInt(user.storage_occ);
+                                        let dataOcc = parseInt(user.storage_occ);
 
-                                    let dataPlus = 100;
+                                        let dataPlus = 100;
 
 
-                                    user['storage_occ'] = 0;
+                                        user['storage_occ'] = 0;
 
-                                    if (dataOcc <= 100) {
-                                        dataPlus = 100;
-                                    } else if (dataOcc <= 200) {
-                                        dataPlus = 100;
-                                    } else if (dataOcc <= 300) {
-                                        dataPlus = 150;
-                                    } else if (dataOcc <= 400) {
-                                        dataPlus = 150;
-                                    } else if (dataOcc <= 500) {
-                                        dataPlus = 150;
-                                    } else if (dataOcc <= 600) {
-                                        dataPlus = 200;
-                                    } else if (dataOcc <= 700) {
-                                        dataPlus = 250;
-                                    } else if (dataOcc <= 800) {
-                                        dataPlus = 250;
-                                    } else if (dataOcc <= 900) {
-                                        dataPlus = 250;
-                                    } else if (dataOcc >= 1000) {
-                                        dataPlus = 300;
-                                    } else {
-                                        dataPlus = 100;
+                                        if (dataOcc <= 100) {
+                                            dataPlus = 100;
+                                        } else if (dataOcc <= 200) {
+                                            dataPlus = 100;
+                                        } else if (dataOcc <= 300) {
+                                            dataPlus = 150;
+                                        } else if (dataOcc <= 400) {
+                                            dataPlus = 150;
+                                        } else if (dataOcc <= 500) {
+                                            dataPlus = 150;
+                                        } else if (dataOcc <= 600) {
+                                            dataPlus = 200;
+                                        } else if (dataOcc <= 700) {
+                                            dataPlus = 250;
+                                        } else if (dataOcc <= 800) {
+                                            dataPlus = 250;
+                                        } else if (dataOcc <= 900) {
+                                            dataPlus = 250;
+                                        } else if (dataOcc >= 1000) {
+                                            dataPlus = 300;
+                                        } else {
+                                            dataPlus = 100;
+                                        }
+
+
+                                        console.log("Data Plus: " + dataPlus);
+                                        user['storage_max'] = user['storage_max'] + dataPlus;
+                                        user['storage_sum'] = user['storage_sum'] + (dataOcc - 50);
+
+                                        collection_users.updateOne({passcode: passcodeVar}, {'$set': user}, (err, item) => {
+                                            if (err) {
+                                                console.log(err);
+                                                client.close();
+                                                res.write(err);
+                                                res.end();
+
+                                            } else {
+                                                //console.log(item);
+                                                client.close();
+                                                res.write("insert success");
+                                                res.end();
+                                            }
+                                        })
                                     }
 
-
-                                    console.log("Data Plus: " + dataPlus);
-                                    user['storage_max'] = user['storage_max'] + dataPlus;
-                                    user['storage_sum'] = user['storage_sum'] + (dataOcc - 50);
-
-                                    collection_users.updateOne({passcode: passcodeVar}, {'$set': user}, (err, item) => {
-                                        if (err) {
-                                            console.log(err);
-                                            client.close();
-                                            res.write(err);
-                                            res.end();
-
-                                        } else {
-                                            //console.log(item);
-                                            client.close();
-                                            res.write("insert success");
-                                            res.end();
-                                        }
-                                    })
                                 } else {
                                     //
                                     console.log("user not defined!");
