@@ -1,19 +1,16 @@
-document.getElementById("btn_no").addEventListener("click", function () {
-
-    location.href = '/terminal/status'
-});
-
-document.getElementById("btn_yes").addEventListener("click", function () {
-
-    uploadData();
-    location.href = '/terminal/uploadQuestion'
-});
-
 document.addEventListener('keydown', function(event) {
     if(event.keyCode == 13) {
         uploadData();
     }
+    else if(event.keyCode == 27){
+        changeToStatus();
+    }
 });
+
+function changeToStatus() {
+    window.location.href='/terminal/status';
+
+}
 
 function uploadData() {
     //upload data
@@ -46,6 +43,6 @@ function uploadData() {
 
     req.send("passcode="+passcodeVar + "&" + "requesttype=upload_data" + "&" + "passcodecrew=2345");
 
-    datamanipulator = 0;
-    document.getElementById("data_manipulator").innerHTML = datamanipulator;
+    //datamanipulator = 0;
+    //document.getElementById("data_manipulator").innerHTML = datamanipulator;
 }

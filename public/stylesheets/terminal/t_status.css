@@ -22,3 +22,16 @@
     width:33%;
     display:inline-block;
 }
+
+.menu_list{
+    list-style-type: none;
+}
+
+.btn_menu{
+    border: none;
+    color: lightgoldenrodyellow;
+    font-size: 20px;
+    padding: 10px;
+    margin: 5px;
+    width: 50%;
+}

@@ -1,17 +1,38 @@
-document.getElementById("btn_upload").addEventListener("click", function () {
-
-    location.href = '/terminal/uploadAsk'
-});
+var currentButton = 0;
+var colorHighlight = "#677b8c";
+var colorDefault = "#2f3131";
 
 document.addEventListener('keydown', function(event) {
     if(event.keyCode == 13) {
-        location.href = '/terminal/uploadAsk'
+        if(currentButton == 0){
+            location.href = '/terminal/uploadAsk'
+        }
+        else if(currentButton == 1){
+
+        }
+        else if(currentButton == 1){
+
+        }
+        else if(currentButton == 1){
+
+        }
     }
     else if(event.keyCode == 27){
         location.href = '/terminal/login'
     }
+    else if(event.keyCode == 38){
+        //arrow up
+        console.log("up")
+        buttonUp();
+    }
+    else if(event.keyCode == 40){
+        //arrow down
+        console.log("down");
+        buttonDown();
+    }
 });
 
+startupMenu();
 updateUser();
 
 function updateUser() {
@@ -89,4 +110,40 @@ function makeUL(array) {
 
     // Finally, return the constructed list:
     return list;
+}
+
+function startupMenu() {
+    document.getElementById("0").style.backgroundColor = colorHighlight;
+    document.getElementById("1").style.backgroundColor = colorDefault;
+    document.getElementById("2").style.backgroundColor = colorDefault;
+    document.getElementById("3").style.backgroundColor = colorDefault;
+}
+
+function buttonUp(){
+    currentButton--;
+
+    if(currentButton < 0){
+        currentButton = 3;
+    }
+    document.getElementById("0").style.backgroundColor = colorDefault;
+    document.getElementById("1").style.backgroundColor = colorDefault;
+    document.getElementById("2").style.backgroundColor = colorDefault;
+    document.getElementById("3").style.backgroundColor = colorDefault;
+
+    document.getElementById("" + currentButton).style.backgroundColor = colorHighlight;
+
+}
+
+function buttonDown(){
+    currentButton++;
+
+    if(currentButton > 3){
+        currentButton = 0;
+    }
+    document.getElementById("0").style.backgroundColor = colorDefault;
+    document.getElementById("1").style.backgroundColor = colorDefault;
+    document.getElementById("2").style.backgroundColor = colorDefault;
+    document.getElementById("3").style.backgroundColor = colorDefault;
+
+    document.getElementById("" + currentButton).style.backgroundColor = colorHighlight;
 }
