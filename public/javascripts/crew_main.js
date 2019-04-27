@@ -10,6 +10,15 @@ document.getElementById("quest_btn").addEventListener("click", function () {
     location.href = '/crew_questhandler';
 });
 
+document.addEventListener('click',function(e){
+    if(e.target && e.target.id== 'btn_quest'){
+        //do something
+        console.log(e.target.getAttribute('data-internalid'));
+        setCookie("quest_active", e.target.getAttribute('data-internalid'), 1);
+        location.href='/crew_questmanager';
+    }
+});
+
 
 updateUser();
 
@@ -47,12 +56,12 @@ function updateUser() {
                     document.getElementById("data_bar").value = responseJSON.storage_occ/responseJSON.storage_max * 100;
                     document.getElementById("storage_all").innerHTML = responseJSON.storage_sum;
 
-                    var questArray = [];
+                    var questArray = responseJSON.quest_names;
                     var badgeArray = [];
 
-                    for(var i = 0; i < responseJSON.quest_names.length; i++){
-                        questArray.push(responseJSON.quest_names[i].quest_name);
-                    }
+                    //for(var i = 0; i < responseJSON.quest_names.length; i++){
+                    //    questArray.push(responseJSON.quest_names[i].quest_name);
+                    //}
 
                     for(var i = 0; i < responseJSON.badge_names.length; i++){
                         badgeArray.push(responseJSON.badge_names[i].badge_name);
@@ -61,7 +70,7 @@ function updateUser() {
                     console.log(badgeArray)
 
 
-                    document.getElementById('todo_list').appendChild(makeUL(questArray));
+                    document.getElementById('todo_list').appendChild(makeUlQuests(questArray));
 
                     document.getElementById('badge_list').appendChild(makeUL(badgeArray));
 
@@ -99,4 +108,31 @@ function makeUL(array) {
 
     // Finally, return the constructed list:
     return list;
+}
+
+function makeUlQuests(array){
+
+var list = document.createElement('ul');
+
+
+    for (var i = 0; i < array.length; i++) {
+
+        var item = document.createElement('BUTTON');
+        //item.id =
+
+        // Set its contents:
+        //item.appendChild(document.createTextNode(array[i]));
+        item.innerHTML = array[i].quest_name;
+        item.setAttribute("data-internalid", array[i].quest_id);
+        item.id = "btn_quest";
+        item.className = "todo_btn";
+
+
+
+        // Add it to the list:
+        list.appendChild(item);
+    }
+
+    return list;
+
 }

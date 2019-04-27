@@ -65,14 +65,23 @@ router.all('/', function(req, res, next) {
                         res.end();
                     } else {
                         let user = item;
-                        console.log( "Crew Login dbresult:" + item);
-                        console.log("Crew logged in!");
-                        console.log("Crew result: "+ item.passcode);
-                        delete user["_id"];
-                        res.json(user);
+                        if(item != null && item != undefined){
 
-                        client.close();
-                        res.end();
+                            console.log( "Crew Login dbresult:" + item);
+                            console.log("Crew logged in!");
+                            console.log("Crew result: "+ item.passcode);
+                            delete user["_id"];
+                            res.json(user);
+
+                            client.close();
+                            res.end();
+                        }
+                        else{
+                            console.log("user undefined");
+                            client.close();
+                            res.write("user undefined");
+                            res.end();
+                        }
                     }
 
 

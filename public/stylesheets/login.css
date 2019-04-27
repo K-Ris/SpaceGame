@@ -1,6 +1,8 @@
 html{
+    /*
     background-image: linear-gradient(#a3adff, #243860);
     background-repeat: no-repeat;
+    */
     height: 100%;
 }
 
@@ -10,11 +12,12 @@ html{
 }
 
 .title{
-    font-size: 40px;
+    font-size: 45px;
+    box-sizing: border-box;
     font-weight: bold;
-    text-align: center;
-    color: #FFFFFF;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: left;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    padding: 15px;
 }
 
 .button-login{

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/stylesheets/navbar.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
     <link rel="stylesheet" href="/stylesheets/user_stats.css">
+    <link rel="stylesheet" href="/stylesheets/crew_main.css">
 
 </head>
 <body>
@@ -16,46 +17,57 @@
     <li><a id="logout_link" href="/login">Logout</a></li>
 </ul>
 
-<h1>Spieler Übersicht</h1>
+<h2>Spieler Übersicht</h2>
 
 <div class="player_info" id="player_info">
-    <p>Player ID:</p>
+    <h3>Player ID:</h3>
     <p id="player_id"></p>
 
 </div>
 
 <div class="player_info">
 
-    <p>Player Name:</p>
+    <h3>Player Name:</h3>
     <p id="player_name"></p>
 </div>
 
 <h2 id="demo">Daten</h2>
-<p>Kapazität:</p>
-<p id="storage_max">0</p>
 
-<p>Belegt:</p>
-<p id="storage_occ">0</p>
+<div class="player_info">
 
+    <h3>Belegt:</h3>
+    <p id="storage_occ">0</p>
+</div>
 
+<div class="player_info">
+    <h3>Kapazität:</h3>
+    <p id="storage_max">0</p>
+
+</div>
 <progress id="data_bar" value="0" max="100"></progress>
+<br>
+<div class="player_info"><h3>Gesamt:</h3>
+</div>
+<div class="player_info"><p id="storage_all">0</p>
+</div>
 
-<p>Gesamt:</p>
-<p id="storage_all">0</p>
+<div class="footer">
+    <button class="btn_footer" id="data_btn">Data Manipulator</button>
+    <button class="btn_footer" id="quest_btn">Quest Management</button>
+</div>
 
-<p>Zu tun</p>
+<h3>Zu tun</h3>
 
-<ul id="todo_list">
+<ul class="todo_list" id="todo_list">
 </ul>
 
-<p>Abzeichen</p>
+
+<h3>Abzeichen</h3>
 
 <ul id="badge_list">
 </ul>
 
 
-<button id="data_btn">Data Manipulator</button>
-<button id="quest_btn">Quest Management</button>
 
 <script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
 <script type="text/javascript" src="/javascripts/crew_main.js"></script>

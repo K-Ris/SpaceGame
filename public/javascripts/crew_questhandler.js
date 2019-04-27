@@ -196,38 +196,6 @@ function makeUL(array) {
         }
 
 
-
-        /*
-        for (var i = 0; i < array.length; i++) {
-            //console.log(userQuestArray);
-            for (var j = 0; j < userQuestArray.length; j++) {
-                //console.log(userQuestArray[j] + "  " + array[i].quest_id);
-                if (userQuestArray[j].quest_id == array[i].quest_id) {
-
-                    // Create the list item:
-                    var item = document.createElement('BUTTON');
-                    //item.id =
-
-                    // Set its contents:
-                    //item.appendChild(document.createTextNode(array[i]));
-                    item.innerHTML = array[i].quest_name;
-                    item.setAttribute("data-internalid", array[i].quest_id);
-                    item.id = "btn_quest";
-
-
-
-
-                    // Add it to the list:
-                    list.appendChild(item);
-
-                    item.style.background = '#70cf79';
-                    break;
-                }
-            }
-        }
-*/
-
-
     }
 
 

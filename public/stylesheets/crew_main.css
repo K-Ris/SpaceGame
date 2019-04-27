@@ -1,0 +1,12 @@
+.todo_btn{
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    margin-bottom: 15px;
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+    position:relative;
+    right:20%;
+}

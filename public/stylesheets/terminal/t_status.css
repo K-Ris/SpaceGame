@@ -7,6 +7,7 @@
     padding-bottom: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
+    display: block;
 }
 
 .table{
@@ -14,4 +15,10 @@
     padding-bottom: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+
+.player_info{
+    width:33%;
+    display:inline-block;
 }
