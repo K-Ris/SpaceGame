@@ -142,6 +142,64 @@ router.all('/', function (req, res, next) {
 
                 })
             }
+            if (requesttypeVar == "update_badge") {
+
+                collection_crew.findOne({passcode: passcodeCrewVar}, (err, items) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+                        collection_users.findOne({passcode: passcodeVar}, (err, item) => {
+                            if (err) {
+                                console.log(err);
+                                client.close();
+                                res.write(err);
+                                res.end();
+                            } else {
+                                console.log(item)
+
+                                let user = item;
+
+                                if (user != undefined) {
+
+                                    console.log("User Login dbresult:" + item);
+                                    console.log("User logged in!");
+                                    console.log("User result: " + item.passcode);
+                                    delete user["_id"];
+
+                                    user['badges'].push(badgeIdVar);
+
+                                    collection_users.updateOne({passcode: passcodeVar}, {'$set': user}, (err, item) => {
+                                        if (err) {
+                                            console.log(err);
+                                            client.close();
+                                            res.write(err);
+                                            res.end();
+
+                                        } else {
+                                            //console.log(item);
+                                            client.close();
+                                            res.write("insert success");
+                                            res.end();
+                                        }
+                                    })
+                                } else {
+                                    //
+                                    console.log("user not defined!");
+                                    client.close();
+                                    res.write("user not defined");
+                                    res.end();
+                                }
+                            }
+
+                        })
+                    }
+
+
+                })
+            }
             else if (requesttypeVar == "extend_data") {
                 collection_crew.findOne({passcode: passcodeCrewVar}, (err, items) => {
                     if (err) {

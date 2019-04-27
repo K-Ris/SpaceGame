@@ -31,11 +31,32 @@ router.all('/', function (req, res, next) {
             const collection_crew = db.collection('crew')
             const collection_users = db.collection('users')
             const collection_quests = db.collection('quests')
+            const collection_quests_terminal_upload = db.collection('quests_terminal_upload')
 
 
             if (requesttypeVar == "quest_download") {
 
                 collection_quests.find().toArray((err, items) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+                        let quests = items;
+                        delete quests["_id"];
+                        res.json(quests);
+
+                        client.close();
+                        res.end();
+                    }
+
+
+                })
+            }
+            if (requesttypeVar == "quest_terminal_upload_download") {
+
+                collection_quests_terminal_upload.find().toArray((err, items) => {
                     if (err) {
                         console.log(err);
                         client.close();

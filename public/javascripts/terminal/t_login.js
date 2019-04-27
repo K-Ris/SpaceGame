@@ -36,13 +36,19 @@ document.addEventListener('keydown', function(event) {
     else if (event.keyCode == 13) {
         console.log(loginStrg);
 
-        inputCode(loginStrg);
+        if(loginStrg == ""){
+
+        }else{
+
+            inputCode(loginStrg);
+
+        }
 
         loginStrg = "";
     }
 });
 
-function inputCode(code) {
+function inputCode() {
 
 
     var req = new XMLHttpRequest();
@@ -84,8 +90,5 @@ function inputCode(code) {
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     req.send("passcode="+loginStrg + "&" + "requesttype=user_login");
-
-
-
 
 }

@@ -9,10 +9,6 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-function changeToStatus() {
-    window.location.href='/terminal/status';
-
-}
 
 function uploadData() {
     //upload data
