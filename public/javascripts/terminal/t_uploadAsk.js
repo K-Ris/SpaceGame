@@ -26,8 +26,8 @@ function uploadData() {
                 document.getElementById("demo").innerHTML = "Kein Freier Speicher!";
             }
             else {
-                location.href = '/terminal/uploadQuestion'
-
+                //location.href = '/terminal/uploadQuestion'
+                location.href = '/terminal/status'
 
             }
 
