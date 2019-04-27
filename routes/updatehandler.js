@@ -461,6 +461,12 @@ router.all('/', function (req, res, next) {
                                                 res.end();
                                             }
                                         })
+                                    }else {
+                                        //
+                                        console.log("user not defined!");
+                                        client.close();
+                                        res.write("user not defined");
+                                        res.end();
                                     }
 
                                 } else {
