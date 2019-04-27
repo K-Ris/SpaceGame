@@ -18,8 +18,9 @@ document.addEventListener('keydown', function(event) {
         }
     }
     else if(event.keyCode == 27){
-        location.href = '/terminal/login'
-    }
+        setTimeout(function () {
+            window.location.href = "/terminal/login"; //will redirect to your blog page (an ex: blog.html)
+        }, 100);    }
     else if(event.keyCode == 38){
         //arrow up
         console.log("up")

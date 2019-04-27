@@ -3,7 +3,9 @@ document.addEventListener('keydown', function(event) {
         uploadData();
     }
     else if(event.keyCode == 27){
-        changeToStatus();
+        setTimeout(function () {
+            window.location.href = "/terminal/status"; //will redirect to your blog page (an ex: blog.html)
+        }, 100);
     }
 });
 
