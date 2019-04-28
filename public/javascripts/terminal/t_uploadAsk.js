@@ -27,7 +27,7 @@ function uploadData() {
             }
             else {
                 //location.href = '/terminal/uploadQuestion'
-                location.href = '/terminal/status'
+                location.href = '/terminal/uploadQuestion'
 
             }
 

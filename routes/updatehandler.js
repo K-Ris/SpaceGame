@@ -9,9 +9,9 @@ router.all('/', function (req, res, next) {
     var passcodeVar = req.body.passcode;
     var passcodeCrewVar = req.body.passcodecrew;
     var requesttypeVar = req.body.requesttype;
-    var dataAmountVar = req.body.dataamount;
-    var questIdVar = req.body.questid
-    var badgeIdVar = req.body.badgeid;
+    var dataAmountVar = parseInt(req.body.dataamount);
+    var questIdVar = parseInt(req.body.questid);
+    var badgeIdVar = parseInt(req.body.badgeid);
 
     //werte abfangen
     if (dataAmountVar == undefined)
@@ -142,7 +142,9 @@ router.all('/', function (req, res, next) {
 
                 })
             }
-            if (requesttypeVar == "update_badge") {
+            else if (requesttypeVar == "update_badge") {
+
+                console.log("here")
 
                 collection_crew.findOne({passcode: passcodeCrewVar}, (err, items) => {
                     if (err) {

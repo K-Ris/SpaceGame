@@ -10,11 +10,18 @@ router.all('/', function (req, res, next) {
     var passcodeCrewVar = req.body.passcodeCrew;
     var requesttypeVar = req.body.requesttype;
     var questIdVar = parseInt(req.body.questId);
+    var arrayallies = req.body.questallies;
+    var questAlliesVar = []
+    if(req.body.questallies != undefined && req.body.questallies != "")
+        questAlliesVar = arrayallies.split(",");
+    else if(req.body.questallies == "")
+        questAlliesVar = []
 
     console.log("Questhandler Requesttype: " + requesttypeVar);
     console.log("Questhandler Passcode Crew: " + passcodeCrewVar);
     console.log("Questhandler Passcode: " + passcodeVar);
     console.log("Questhandler QuestId: " + questIdVar);
+    console.log("Questhandler Quest Allies: " + questAlliesVar);
 
     if (requesttypeVar != undefined && requesttypeVar != "null") {
 
@@ -113,7 +120,7 @@ router.all('/', function (req, res, next) {
                                 let user = item;
                                 delete user["_id"];
 
-                                user['quests'].push({quest_id:questIdVar});
+                                user['quests'].push({quest_id:questIdVar, quest_allies:questAlliesVar});
 
                                 collection_users.updateOne({passcode: passcodeVar}, {'$set': user}, (err, item) => {
                                     if (err) {

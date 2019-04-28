@@ -1,9 +1,15 @@
-.btn_question{
 
-    border: none;
-    color: lightgoldenrodyellow;
-    font-size: 20px;
-    padding: 10px;
-    margin: 5px;
-    width: 50%;
+ul {
+    padding:0;
+    width:100%;
+    text-align:center;
+}
+
+li {
+    margin:10px;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background:rgba(0,0,255,0.5);
+    list-style-type: none;
 }
