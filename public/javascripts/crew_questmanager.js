@@ -475,7 +475,7 @@ function finishQuest(player, badge, reward, islast){
 
     console.log("Quest badge reward: " + badge);
 
-    req.send("passcode="+passcodeVar + "&" + "requesttype=finish_quest" + "&" + "passcodecrew=" +  passcodeCrewVar  + "&" + "dataamount=" + reward + "&" + "badgeid=" + badge + "&" + "questid=" + questdata.quest_id);
+    req.send("passcode="+player + "&" + "requesttype=finish_quest" + "&" + "passcodecrew=" +  passcodeCrewVar  + "&" + "dataamount=" + reward + "&" + "badgeid=" + badge + "&" + "questid=" + questdata.quest_id);
 
     //datamanipulator = 0;
     //document.getElementById("data_manipulator").innerHTML = datamanipulator;
