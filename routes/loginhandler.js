@@ -87,6 +87,34 @@ router.all('/', function(req, res, next) {
 
                 })
             }
+            else if(requesttypeVar == "get_all_users"){
+                collection_users.find().toArray((err, items) => {
+                    if (err) {
+                        console.log(err);
+                        client.close();
+                        res.write(err);
+                        res.end();
+                    } else {
+                        let user = items;
+                        if(items != null && items != undefined){
+
+                            delete user["_id"];
+                            res.json(user);
+
+                            client.close();
+                            res.end();
+                        }
+                        else{
+                            console.log("user undefined");
+                            client.close();
+                            res.write("user undefined");
+                            res.end();
+                        }
+                    }
+
+
+                })
+            }
             else if(requesttypeVar == "user_stats"){
 
                 collection_users.findOne({passcode: passcodeVar}, (err, item) => {

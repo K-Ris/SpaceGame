@@ -8,13 +8,16 @@ document.addEventListener('keydown', function(event) {
             location.href = '/terminal/uploadAsk'
         }
         else if(currentButton == 1){
-
+            //investment quests
+            location.href = '/terminal/investAsk'
         }
-        else if(currentButton == 1){
-
+        else if(currentButton == 2){
+            //abzeichen anschauen
+            location.href = '/terminal/badges'
         }
-        else if(currentButton == 1){
-
+        else if(currentButton == 3){
+            //scoreboard öffnen
+            location.href = '/terminal/scoreboard'
         }
     }
     else if(event.keyCode == 27){
@@ -75,7 +78,7 @@ function updateUser() {
                     }
 
 
-                    document.getElementById('todo_list').appendChild(makeUL(questArray));
+                    //document.getElementById('todo_list').appendChild(makeUL(questArray));
 
                 } catch (err) {
                     console.log(err);
