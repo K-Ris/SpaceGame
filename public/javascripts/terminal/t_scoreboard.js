@@ -1,3 +1,22 @@
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 13) {
+        setTimeout(function () {
+            window.location.href = "/terminal/status"; //will redirect to your blog page (an ex: blog.html)
+        }, 100);
+    }
+    else if(event.keyCode == 27){
+        setTimeout(function () {
+            window.location.href = "/terminal/status"; //will redirect to your blog page (an ex: blog.html)
+        }, 100);    }
+    else if(event.keyCode == 38){
+        //arrow up
+    }
+    else if(event.keyCode == 40){
+        //arrow down
+    }
+});
+
+
 // Load google charts
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
@@ -69,7 +88,7 @@ function drawChart() {
                     )
 
                     // Optional; add a title and set the width and height of the chart
-                    var options = {'title':'Abteilungsdaten', 'width':550, 'height':400};
+                    var options = {'title':'Abteilungsdaten', 'width':350, 'height':250, backgroundColor: '#000000', legend:{textStyle:{color: '#d5d328'}}, title:{textStyle:{color: '#d5d328'}}};
 
                     // Display the chart inside the <div> element with id="piechart"
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));

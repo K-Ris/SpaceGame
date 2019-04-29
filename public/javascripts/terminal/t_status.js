@@ -2,9 +2,11 @@ var currentButton = 0;
 var colorHighlight = "#677b8c";
 var colorDefault = "#2f3131";
 
+var playerdata;
+
 document.addEventListener('keydown', function(event) {
     if(event.keyCode == 13) {
-        if(currentButton == 0){
+        if(currentButton == 0 && playerdata.storage_occ > 0){
             location.href = '/terminal/uploadAsk'
         }
         else if(currentButton == 1){
@@ -62,6 +64,7 @@ function updateUser() {
                 try {
 
                     var responseJSON = JSON.parse(req.responseText);
+                    playerdata = responseJSON;
 
                     //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 

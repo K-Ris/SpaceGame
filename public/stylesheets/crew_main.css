@@ -10,3 +10,12 @@
     position:relative;
     right:20%;
 }
+
+.btn_footer{
+    background-color: #4869af; /* Green background */
+    border: 1px solid #2f3131; /* Green border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    margin-bottom: 15px;
+    cursor: pointer; /* Pointer/hand icon */
+}

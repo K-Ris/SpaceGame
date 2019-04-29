@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Scoreboard</title>
+    <link rel="stylesheet" href="/stylesheets/terminal/t_scoreboard.css">
+    <link rel="stylesheet" href="/stylesheets/terminal/stickyBottom.css">
+    <link rel="stylesheet" href="/stylesheets/terminal/main.css">
 </head>
 <body>
 
+<h1>Rangliste</h1>
+
+<div id="wrapper">
+
+    <div id="piechart"></div>
+
+    <div id="player_div">
+        <table id="player_table"></table>
+    </div>
+
+</div>
+
+<div class="footer">
+    <table>
+        <button class="btn_footer" id="btn_no">Zurück</button>
+        <button class="btn_footer" id="btn_up">^</button>
+        <button class="btn_footer" id="btn_down">v</button>
+        <button class="btn_footer" id="btn_yes"></button>
+    </table>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="/javascripts/terminal/autologout.js"></script>
+<script type="text/javascript" src="/javascripts/terminal/t_scoreboard.js"></script>
 </body>
 </html>

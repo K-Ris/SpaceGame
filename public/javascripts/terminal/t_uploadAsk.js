@@ -36,7 +36,7 @@ function uploadData() {
     req.open("POST", "/updatehandler", true);
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    passcodeCrewVar = getCookie("passcode_crew");
+    //passcodeCrewVar = getCookie("passcode_crew");
     passcodeVar = getCookie("passcode_user");
 
     req.send("passcode="+passcodeVar + "&" + "requesttype=upload_data" + "&" + "passcodecrew=2345");

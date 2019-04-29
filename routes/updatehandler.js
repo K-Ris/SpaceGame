@@ -290,7 +290,7 @@ router.all('/', function (req, res, next) {
 
                 //
 
-            } else if (requesttypeVar == "upload_data") {
+            } else if (requesttypeVar == "upload_data_old") {
                 collection_crew.findOne({passcode: passcodeCrewVar}, (err, items) => {
                     if (err) {
                         console.log(err);
@@ -411,7 +411,9 @@ router.all('/', function (req, res, next) {
                                     console.log("User result: " + item.passcode);
                                     delete user["_id"];
 
-                                    if(user['storage_occ'] <= 0){
+                                    console.log("user storage occ: " + user['storage_occ'])
+
+                                    if(user['storage_occ'] > 0){
 
                                         let dataOcc = parseInt(user.storage_occ);
 
@@ -465,9 +467,9 @@ router.all('/', function (req, res, next) {
                                         })
                                     }else {
                                         //
-                                        console.log("user not defined!");
+                                        console.log("no data to upload!");
                                         client.close();
-                                        res.write("user not defined");
+                                        res.write("nodatatoupload");
                                         res.end();
                                     }
 
