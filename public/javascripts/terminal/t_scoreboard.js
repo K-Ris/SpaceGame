@@ -88,7 +88,7 @@ function drawChart() {
                     )
 
                     // Optional; add a title and set the width and height of the chart
-                    var options = {'title':'Abteilungsdaten', 'width':350, 'height':250, backgroundColor: '#000000', legend:{textStyle:{color: '#d5d328'}}, title:{textStyle:{color: '#d5d328'}}};
+                    var options = {'title':'Abteilungsdaten', 'width':350, 'height':250, backgroundColor: 'transparent', legend:{textStyle:{color: '#d5d328'}}, title:{textStyle:{color: '#d5d328'}}};
 
                     // Display the chart inside the <div> element with id="piechart"
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));

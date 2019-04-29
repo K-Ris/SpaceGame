@@ -11,7 +11,7 @@ document.addEventListener('keydown', function(event) {
         }
         else if(currentButton == 1){
             //investment quests
-            location.href = '/terminal/investAsk'
+            location.href = '/terminal/quests'
         }
         else if(currentButton == 2){
             //abzeichen anschauen

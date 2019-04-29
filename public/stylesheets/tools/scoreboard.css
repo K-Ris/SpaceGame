@@ -1,7 +1,8 @@
 body{
     font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
-
-
+    color: #d5d328;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .title_main{
@@ -30,4 +31,4 @@ th, td {
     padding: 8px;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {background-color: #2f3131;}

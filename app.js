@@ -28,6 +28,7 @@ var debugLoginTerminalRouter = require('./routes/terminal/t_debuglogin');
 var investmentAskTerminalRouter = require('./routes/terminal/t_investAsk');
 var badgeTerminalRouter = require('./routes/terminal/t_badges');
 var scoreboardTerminalRouter = require('./routes/terminal/t_scoreboard');
+var questsTerminalRouter = require('./routes/terminal/t_quests');
 
 var questImporterToolsRouter = require('./routes/tools/tool_questimporter');
 var questImporterHandlerRouter = require('./routes/tools/tool_questimporterhandler');
@@ -69,6 +70,7 @@ app.use('/terminal/debugLogin', debugLoginTerminalRouter);
 app.use('/terminal/investAsk', investmentAskTerminalRouter);
 app.use('/terminal/badges', badgeTerminalRouter);
 app.use('/terminal/scoreboard', scoreboardTerminalRouter);
+app.use('/terminal/quests', questsTerminalRouter);
 
 
 app.use('/tools/questimporter', questImporterToolsRouter);
