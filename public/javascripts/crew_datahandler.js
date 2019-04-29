@@ -42,7 +42,7 @@ document.getElementById("back_btn").addEventListener("click", function () {
 
 document.getElementById("data_upload_btn").addEventListener("click", function () {
     //location.href='/crew_main';
-    uploadData();
+    datauploadAlert();
 });
 
 
@@ -149,4 +149,14 @@ function uploadData() {
 
     //datamanipulator = 0;
     //document.getElementById("data_manipulator").innerHTML = datamanipulator;
+}
+
+
+function datauploadAlert() {
+    var txt;
+    if (confirm("Daten hochladen?")) {
+        uploadData();
+    } else {
+
+    }
 }
