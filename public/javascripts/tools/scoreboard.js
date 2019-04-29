@@ -40,7 +40,7 @@ function drawChart() {
                     var objectCounter = 0;
                     users.forEach(function(obj) {
                         console.log(obj);
-                        datauserlist.push({platz:0,"Spieler":obj.username, "Daten":obj.storage_sum});
+                        datauserlist.push({platz:0,"Klon":obj.username, "Daten":obj.storage_sum});
 
                         if(obj.department == "Sicherheit"){
                             sicherheitDaten = sicherheitDaten + obj.storage_sum;
