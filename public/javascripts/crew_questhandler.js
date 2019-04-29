@@ -6,6 +6,7 @@
 //show quests that are unavailable third (red)
 
 var userQuestArray;
+var userdata;
 
 document.addEventListener('click',function(e){
     if(e.target && e.target.id== 'btn_quest'){
@@ -44,6 +45,7 @@ function updateUserQuests() {
 
                     var responseJSON = JSON.parse(req.responseText);
 
+                    userdata = responseJSON;
                     //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 
                     userQuestArray = responseJSON.quests;
@@ -172,27 +174,54 @@ function makeUL(array) {
 
     }
 
-    //console.log(array.length)
+    console.log("userQuest Array: " + JSON.stringify(userQuestArray))
     for (var k = 0; k < array.length; k++) {
 
         //console.log("array: " + array[k].quest_crew_id);
 
         if(parseInt(array[k].quest_crew_id) == crewid){
 
-            //füge quest zur liste
+            var inList = false;
 
-            // Create the list item:
-            var item = document.createElement('BUTTON');
-            //item.id =
+            for(var u = 0; u < userdata.quests_done.length; u++){
+                if(userdata.quests_done[u] == parseInt(array[k].quest_id)){
+                    inList = true;
+                    break
+                }
+                else{
+                    inList = false;
+                }
+            }
 
-            // Set its contents:
-            //item.appendChild(document.createTextNode(array[i]));
-            item.innerHTML = array[k].quest_name;
-            item.setAttribute("data-internalid", array[k].quest_id);
-            item.id = "btn_quest";
+            for(var q = 0; q < userQuestArray.length; q++){
+                console.log(userQuestArray[q].quest_id)
+                if(userQuestArray[q].quest_id == parseInt(array[k].quest_id)){
+                    inList = true;
+                    break
+                }
+                else{
+                    inList = false;
+                }
+            }
 
-            // Add it to the list:
-            list.appendChild(item);
+            if(!inList){
+                //füge quest zur liste
+
+                // Create the list item:
+                var item = document.createElement('BUTTON');
+                //item.id =
+
+                // Set its contents:
+                //item.appendChild(document.createTextNode(array[i]));
+                item.innerHTML = array[k].quest_name;
+                item.setAttribute("data-internalid", array[k].quest_id);
+                item.id = "btn_quest";
+
+                // Add it to the list:
+                list.appendChild(item);
+
+            }
+
         }
 
 
