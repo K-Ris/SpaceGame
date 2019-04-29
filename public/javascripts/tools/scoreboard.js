@@ -4,6 +4,8 @@ google.charts.setOnLoadCallback(drawChart);
 
 var users;
 
+setTimeout("location.href = '/tools/scoreboard'",60000);
+
 // Draw the chart and set the chart values
 function drawChart() {
 
