@@ -449,7 +449,7 @@ router.all('/', function (req, res, next) {
 
                                         console.log("Data Plus: " + dataPlus);
                                         user['storage_max'] = user['storage_max'] + dataPlus;
-                                        user['storage_sum'] = user['storage_sum'] + (dataOcc - 50);
+                                        user['storage_sum'] = user['storage_sum'] + (dataOcc);
 
                                         collection_users.updateOne({passcode: passcodeVar}, {'$set': user}, (err, item) => {
                                             if (err) {

@@ -27,6 +27,7 @@ function drawChart() {
 
                     users = responseJSON;
 
+                    var color = '#85af99'
 
 
                     var sicherheitDaten = 0;
