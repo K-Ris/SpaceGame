@@ -31,6 +31,7 @@ function drawChart() {
                     var wissenschaftDaten = 0;
                     var körperlicheDaten = 0;
                     var spaßigeDaten = 0;
+                    var traditionelleDaten = 0;
                     var datauserlist = [];
 
                     var objectCounter = 0;
@@ -50,6 +51,9 @@ function drawChart() {
                         else if(obj.department == "Spaß"){
                             spaßigeDaten = spaßigeDaten + obj.storage_sum;
                         }
+                        else if(obj.department == "Tradition"){
+                            traditionelleDaten = traditionelleDaten + obj.storage_sum;
+                        }
                     });
 
                     console.log(sicherheitDaten);
@@ -63,7 +67,8 @@ function drawChart() {
                             ['Sicherheit', sicherheitDaten],
                             ['Wissenschaft', wissenschaftDaten],
                             ['Körper&Geist', körperlicheDaten],
-                            ['Spaß', spaßigeDaten]
+                            ['Spaß', spaßigeDaten],
+                            ['Tradition', traditionelleDaten]
                         ]
 
                     )
