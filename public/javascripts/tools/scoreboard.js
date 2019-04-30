@@ -61,7 +61,7 @@ function drawChart() {
 
                     console.log(sicherheitDaten);
                     console.log(wissenschaftDaten);
-                    console.log(körperlicheDaten);
+                    console.log(korperlicheDaten);
                     console.log(spaßigeDaten);
 
                     var data = google.visualization.arrayToDataTable(

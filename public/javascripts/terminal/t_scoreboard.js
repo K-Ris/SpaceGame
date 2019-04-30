@@ -48,7 +48,7 @@ function drawChart() {
 
                     var sicherheitDaten = 0;
                     var wissenschaftDaten = 0;
-                    var körperlicheDaten = 0;
+                    var korperlicheDaten = 0;
                     var spaßigeDaten = 0;
                     var traditionelleDaten = 0;
 
@@ -66,7 +66,7 @@ function drawChart() {
                             wissenschaftDaten = wissenschaftDaten + obj.storage_sum;
                         }
                         else if(obj.department == "Körper"){
-                            körperlicheDaten = körperlicheDaten + obj.storage_sum;
+                            korperlicheDaten = korperlicheDaten + obj.storage_sum;
                         }
                         else if(obj.department == "Spaß"){
                             spaßigeDaten = spaßigeDaten + obj.storage_sum;
@@ -78,7 +78,7 @@ function drawChart() {
 
                     console.log(sicherheitDaten);
                     console.log(wissenschaftDaten);
-                    console.log(körperlicheDaten);
+                    console.log(korperlicheDaten);
                     console.log(spaßigeDaten);
 
                     var data = google.visualization.arrayToDataTable(
@@ -86,7 +86,7 @@ function drawChart() {
                             ['Task', 'Hours per Day'],
                             ['Sicherheit', sicherheitDaten],
                             ['Wissenschaft', wissenschaftDaten],
-                            ['Körper&Geist', körperlicheDaten],
+                            ['Körper&Geist', korperlicheDaten],
                             ['Spaß', spaßigeDaten],
                             ['Tradition', traditionelleDaten]
 
