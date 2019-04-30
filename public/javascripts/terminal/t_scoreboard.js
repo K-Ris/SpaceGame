@@ -65,7 +65,7 @@ function drawChart() {
                         else if(obj.department == "Wissenschaft"){
                             wissenschaftDaten = wissenschaftDaten + obj.storage_sum;
                         }
-                        else if(obj.department == "Körper&Geist"){
+                        else if(obj.department == "Körper"){
                             körperlicheDaten = körperlicheDaten + obj.storage_sum;
                         }
                         else if(obj.department == "Spaß"){
