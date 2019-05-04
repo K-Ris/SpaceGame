@@ -23,7 +23,7 @@ router.all('/', function (req, res, next) {
     console.log("Questhandler QuestId: " + questIdVar);
     console.log("Questhandler Quest Allies: " + questAlliesVar);
 
-    if (requesttypeVar != undefined && requesttypeVar != "null") {
+    if (requesttypeVar != undefined && requesttypeVar != "null" && passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null") {
 
         var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
 
