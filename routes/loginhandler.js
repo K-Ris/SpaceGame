@@ -158,7 +158,10 @@ router.all('/', function(req, res, next) {
                                     }
 
                                     for(var i = 0; i < user.badges.length; i++){
-                                        searchedBadgeIds.push(user.badges[i]);
+                                        if(user.badges[i].badge_id != 0){
+
+                                            searchedBadgeIds.push(user.badges[i]);
+                                        }
                                     }
 
                                     console.log("searchedBadgeIds: " + searchedBadgeIds);
