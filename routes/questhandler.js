@@ -21,7 +21,7 @@ router.all('/', function (req, res, next) {
         questAlliesVar = [];
     }
 
-    if(passcodeVar.length() < 2){
+    if(passcodeVar.length < 2){
         passcodeVar = '0' + passcodeVar;
     }
 
