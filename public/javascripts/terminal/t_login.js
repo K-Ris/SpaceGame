@@ -32,6 +32,9 @@ document.addEventListener('keydown', function(event) {
     else if(event.keyCode == 57) {
         loginStrg += "9";
     }
+    else if(event.keyCode == 73) {
+
+    }
 
     else if (event.keyCode == 13) {
         console.log(loginStrg);
@@ -47,6 +50,13 @@ document.addEventListener('keydown', function(event) {
         loginStrg = "";
     }
 });
+
+function firstContact(){
+    document.getElementById("demo").innerHTML = "Falscher Passcode";
+
+    document.getElementById("demo").innerHTML = "Falscher Passcode";
+
+}
 
 function inputCode() {
 

@@ -14,13 +14,14 @@ router.all('/', function (req, res, next) {
     var badgeIdVar = parseInt(req.body.badgeid);
 
     //werte abfangen
-    if (dataAmountVar == undefined)
+    if(typeof dataAmountVar != 'number'){
         dataAmountVar = 0;
+    }
 
-    if (badgeIdVar == undefined)
+    if (typeof badgeIdVar != 'number')
         badgeIdVar = 0;
 
-    if (questIdVar == undefined)
+    if (typeof questIdVar != 'number')
         questIdVar = 0;
 
     console.log("Updatehandler Requesttype: " + requesttypeVar);
@@ -78,6 +79,7 @@ router.all('/', function (req, res, next) {
                                     delete user["_id"];
 
                                     if (dataAmountVar != undefined) {
+
 
                                         if (dataAmountVar != "") {
                                             let dataOcc = parseInt(user.storage_occ);
