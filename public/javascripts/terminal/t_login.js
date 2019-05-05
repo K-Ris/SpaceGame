@@ -61,7 +61,7 @@ function firstContact(){
 
 }
 
-function firstContact(){
+function resetContact(){
     document.getElementById("text_title").innerHTML = "Hey du süßer Klon";
 
     document.getElementById("text_main").innerHTML = "Du kannst dich mit deinem Space-Stecker anmelden!";
