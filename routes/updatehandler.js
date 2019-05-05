@@ -23,6 +23,15 @@ router.all('/', function (req, res, next) {
 
     if (typeof questIdVar != 'number')
         questIdVar = 0;
+    try{
+
+        if(passcodeVar == undefined || typeof dataAmountVar == 'number' || passcodeVar.length < 2 || passcodeVar.length > 2){
+            passcodeVar = "";
+        }
+    }
+    catch (e) {
+        passcodeVar = ""
+    }
 
     console.log("Updatehandler Requesttype: " + requesttypeVar);
     console.log("Updatehandler Passcode: " + passcodeVar);

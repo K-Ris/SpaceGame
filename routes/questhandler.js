@@ -25,6 +25,16 @@ router.all('/', function (req, res, next) {
         passcodeVar = '0' + passcodeVar;
     }
 
+    try{
+
+        if(passcodeVar == undefined || typeof dataAmountVar == 'number' || passcodeVar.length < 2 || passcodeVar.length > 2){
+            passcodeVar = "";
+        }
+    }
+    catch (e) {
+        passcodeVar = ""
+    }
+
     console.log("Questhandler Requesttype: " + requesttypeVar);
     console.log("Questhandler Passcode Crew: " + passcodeCrewVar);
     console.log("Questhandler Passcode: " + passcodeVar);
