@@ -57,7 +57,7 @@ document.addEventListener('keydown', function(event) {
 function firstContact(){
     document.getElementById("text_title").innerHTML = "";
 
-    document.getElementById("text_main").innerHTML = "Lieber Klon, danke fürs Anstecken, ich schau mir diene Daten an, bitte dreh nochmal langsam deinen Spacestecker einmal im Uhrzeigersinn...";
+    document.getElementById("text_main").innerHTML = "Lieber Klon, danke fürs Anstecken! Ich schau mir deine Daten an, bitte dreh nochmal langsam deinen Space-Stecker im Uhrzeigersinn...";
 
 }
 
