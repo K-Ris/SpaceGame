@@ -33,7 +33,10 @@ document.addEventListener('keydown', function(event) {
         loginStrg += "9";
     }
     else if(event.keyCode == 73) {
-
+        firstContact();
+    }
+    else if(event.keyCode == 79) {
+        resetContact();
     }
 
     else if (event.keyCode == 13) {
@@ -52,9 +55,16 @@ document.addEventListener('keydown', function(event) {
 });
 
 function firstContact(){
-    document.getElementById("demo").innerHTML = "Falscher Passcode";
+    document.getElementById("text_title").innerHTML = "";
 
-    document.getElementById("demo").innerHTML = "Falscher Passcode";
+    document.getElementById("text_main").innerHTML = "Lieber Klon, danke fürs Anstecken, ich schau mir diene Daten an, bitte dreh nochmal langsam deinen Spacestecker einmal im Uhrzeigersinn...";
+
+}
+
+function firstContact(){
+    document.getElementById("text_title").innerHTML = "Hey du süßer Klon";
+
+    document.getElementById("text_main").innerHTML = "Du kannst dich mit deinem Space-Stecker anmelden!";
 
 }
 

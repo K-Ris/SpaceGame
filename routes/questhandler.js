@@ -21,6 +21,10 @@ router.all('/', function (req, res, next) {
         questAlliesVar = [];
     }
 
+    if(passcodeVar.length() < 2){
+        passcodeVar = '0' + passcodeVar;
+    }
+
     console.log("Questhandler Requesttype: " + requesttypeVar);
     console.log("Questhandler Passcode Crew: " + passcodeCrewVar);
     console.log("Questhandler Passcode: " + passcodeVar);
