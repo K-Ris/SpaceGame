@@ -172,7 +172,7 @@ router.all('/', function (req, res, next) {
                                 res.end();
                             } else {
                                 let user = item;
-                                delete user["_id"];
+                                //delete user["_id"];
 
                                 var questArray = user['quests'];
 
