@@ -182,19 +182,19 @@ function setAllies() {
     ally1Text.innerHTML = "Choose Ally 1";
     var ally1 = document.createElement('input');
     ally1.id = "ally_form1"
-    ally1.pattern="[0-9]"
+    ally1.maxLength = 2;
 
     var ally2Text = document.createElement('p');
     ally2Text.innerHTML = "Choose Ally 2";
     var ally2 = document.createElement('input');
     ally2.id = "ally_form2"
-    ally2.pattern="[0-9]"
+    ally2.maxLength = 2;
 
     var ally3Text = document.createElement('p');
     ally3Text.innerHTML = "Choose Ally 2";
     var ally3 = document.createElement('input');
     ally3.id = "ally_form3"
-    ally3.pattern="[0-9]"
+    ally3.maxLength = 2;
 
     var allyButton = document.createElement('BUTTON');
     allyButton.id = "ally_btn";
