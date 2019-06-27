@@ -146,7 +146,7 @@ function setUploadFinish(){
 
     document.getElementById("answer_list").innerHTML = '';
 
-    document.getElementById("title_finish").innerHTML = "Als Dank für deine Mithilfe gebe ich dir ein neues Abzeichen";
+    document.getElementById("title_finish").innerHTML = "Als Dank für deine Mithilfe gebe ich dir ein neues Vermächtnis";
 }
 
 function startupMenu() {
