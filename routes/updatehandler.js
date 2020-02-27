@@ -47,7 +47,7 @@ router.all('/', function (req, res, next) {
                 return
             }
 
-            const db = client.db('spacemazeproduction_db')
+            const db = client.db('spacemaze_db')
 
             const collection_crew = db.collection('crew')
             const collection_users = db.collection('users')
