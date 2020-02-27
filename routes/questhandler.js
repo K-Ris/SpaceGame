@@ -35,7 +35,7 @@ router.all('/', function (req, res, next) {
 
     if (requesttypeVar != undefined && requesttypeVar != "null" && passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null") {
 
-        var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
+        var dbHost = 'mongodb://newkey:ananas456@ds323239-a0.mlab.com:23239,ds323239-a1.mlab.com:23239/spacemaze_db?replicaSet=rs-ds323239';
 
         mongo.connect(dbHost, (err, client) => {
             if (err) {
@@ -43,7 +43,7 @@ router.all('/', function (req, res, next) {
                 return
             }
 
-            const db = client.db('spacemazeproduction_db')
+            const db = client.db('spacemaze_db')
 
             const collection_crew = db.collection('crew')
             const collection_users = db.collection('users')
