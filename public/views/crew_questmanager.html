@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quest Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/crew_questmanager.css">
+</head>
+<body>
+<ul class="navUl">
+    <li class="navLi"><a class="active" href="/views/crew_questhandler.html">Back</a></li>
+    <li class="navLi"><p class="nav_title">Space Maze Game</p>
+</ul>
+<p id="demo"></p>
+
+<div class="quest_name_div">
+    <p class="quest_text">Questname:</p>
+    <h2 id="quest_name"></h2>
+</div>
+
+<div class="quest_department_div">
+    <p class="quest_text">Questdepartment:</p>
+    <p id="quest_department"></p>
+</div>
+
+<div>
+    <button id="btn_start" disabled>Quest starten</button>
+
+    <button id="btn_finish" disabled>Quest abschließen</button>
+</div>
+
+<button id="btn_stages">Quest Stages</button>
+
+<button id="btn_cancel" disabled>Quest entfernen</button>
+<hr>
+<div id="ally_selection"></div>
+<h3 id="reward_player"></h3>
+<div id="reward_list"></div>
+
+
+<script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
+<script type="text/javascript" src="/javascripts/crew_questmanager.js"></script>
+</body>
+</html>

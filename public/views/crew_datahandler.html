@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Datahandling</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/crew_datahandler.css">
+    <link rel="stylesheet" href="/stylesheets/slider.css">
+</head>
+<body>
+<ul class="navUl">
+    <li class="navLi"><a class="active" href="/views/crew_main.html">Back</a></li>
+    <li class="navLi"><p class="nav_title">Space Maze Game</p>
+</ul>
+
+<p id="demo"></p>
+<div class="wrapper">
+    <table id="table_code">
+        <tr>
+            <td><button id="button10-" >-</button></td>
+            <td><p>10</p></td>
+            <td><button id="button10+">+</button></td>
+        </tr>
+
+        <tr>
+            <td><button id="button50-">-</button></td>
+            <td><p>50</p></td>
+            <td><button id="button50+">+</button></td>
+        </tr>
+
+        <tr>
+            <td><button id="button100-">-</button></td>
+            <td><p>100</p></td>
+            <td><button id="button100+">+</button></td>
+        </tr>
+
+
+    </table>
+
+    <div>
+        <p Id="data_manipulator">0</p>
+    </div>
+
+    <p>Erweitere Datastorage</p>
+    <label class="switch">
+        <input type="checkbox" id="dataselector">
+        <span class="slider round"></span>
+    </label>
+
+    <br><br>
+
+
+    <button id="submit_btn">Übernehmen</button>
+    <button id="back_btn">Zurück</button>
+
+</div>
+
+<button id="data_upload_btn">Lade Daten manuell hoch</button>
+
+
+
+<script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
+<script type="text/javascript" src="/javascripts/crew_datahandler.js"></script>
+</body>
+</html>

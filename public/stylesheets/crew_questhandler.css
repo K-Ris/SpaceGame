@@ -1,0 +1,15 @@
+body{
+    width: 100%;
+}
+
+ul{
+    width: 100%;
+}
+
+#btn_quest
+{
+    float:left;
+    height: 50px;
+    width: 95%;
+    text-align: center;
+}

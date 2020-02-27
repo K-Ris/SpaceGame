@@ -1,0 +1,32 @@
+#btn_cancel{
+    color: #ca3644;
+}
+
+button{
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#reward_list{
+    text-align: center;
+}
+
+.quest_department_div{
+    display: inline;
+}
+
+.quest_name_div{
+    display: inline;
+}
+
+.quest_text{
+    font-weight: bold;
+}
+
+#quest_name{
+}
+
+#reward_player{
+    font-size:  xx-large;
+}

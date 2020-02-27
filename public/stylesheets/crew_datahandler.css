@@ -1,0 +1,17 @@
+button{
+    background-color: #4869af; /* Green background */
+    border: 1px solid #2f3131; /* Green border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    margin-bottom: 15px;
+    cursor: pointer; /* Pointer/hand icon */
+}
+
+#data_upload_btn{
+//width: 100%;
+    color: #ca3644;
+    background-color: #afd1ed;
+    text-align: center;
+    bottom: 10px;
+    position: absolute;
+}

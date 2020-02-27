@@ -3,8 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/user_stats.css">
+    <link rel="stylesheet" href="/stylesheets/crew_main.css">
 </head>
-<body>
+<body background="/images/spacemaze_bild_terminal.jpg">
+<ul class="navUl">
+    <li class="navLi"><a class="active" href="/views/login.html">Back</a></li>
+    <li class="navLi"><p class="nav_title">Space Maze Game</p>
+    <li class="navLi" style="float:right"><button id="btn_refresh">Refresh</button></li>
+</ul>
 
+<p class="title_status">Spielerstatus</p>
+
+<div class="player_info" id="player_info">
+    <h3>Player ID:</h3>
+    <p id="player_id"></p>
+
+</div>
+
+<div class="player_info">
+
+    <h3>Player Name:</h3>
+    <p id="player_name"></p>
+</div>
+
+<h2 id="demo">Daten</h2>
+
+<h3 class="title_cap">Kapazität:</h3>
+<p id="storage_max">0</p>
+
+<h3 class="title_occ">Belegt:</h3>
+<p id="storage_occ">0</p>
+
+
+<progress id="data_bar" value="0" max="100"></progress>
+
+<h3 class="title_all">Gesamt:</h3>
+<p id="storage_all">0</p>
+
+<h3 class="title_todo">Zu tun</h3>
+
+<ul id="todo_list">
+</ul>
+
+<button id="btn_scoreboard">Scoreboard</button>
+<button id="btn_badges">Vermächtnis</button>
+
+<script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
+<script type="text/javascript" src="/javascripts/user_stats.js"></script>
 </body>
 </html>

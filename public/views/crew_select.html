@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Selecttion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/crew_login.css">
+</head>
+<body>
+
+<ul class="navUl">
+    <li class="navLi"><a class="active" href="/login">Back</a></li>
+    <li class="navLi"><p class="nav_title">Space Maze Game</p></li>
+    <li><a id="logout_link" href="/login">Logout</a></li>
+</ul>
+
+<p>Bitte Spielercode eingeben</p>
+
+<table id="table_code">
+    <tr>
+        <td><p class="p_code" id="p_code_1">-</p></td>
+        <td><p class="p_code" id="p_code_2">-</p></td>
+    </tr>
+
+
+</table>
+
+
+<table id="matrix">
+    <tr>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_1">1</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_2">2</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_3">3</button>
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            <button class="matrix_btn" id="btn_matrix_4">4</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_5">5</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_6">6</button>
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>
+            <button class="matrix_btn" id="btn_matrix_7">7</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_8">8</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_9">9</button>
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>
+            <button class="matrix_btn_X" id="btn_matrix_X">X</button>
+        </td>
+        <td>
+            <button class="matrix_btn" id="btn_matrix_0">0</button>
+        </td>
+        <td>
+            <button class="matrix_btn_V" id="btn_matrix_V">&#10003</button>
+        </td>
+    </tr>
+</table>
+
+
+<script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
+<script type="text/javascript" src="/javascripts/crew_select.js"></script>
+<script type="text/javascript" src="/javascripts/logouthandler.js"></script>
+</body>
+</html>

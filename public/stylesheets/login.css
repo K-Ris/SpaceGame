@@ -1,0 +1,53 @@
+html{
+    /*
+    background-image: linear-gradient(#a3adff, #243860);
+    background-repeat: no-repeat;
+    */
+    height: 100%;
+}
+
+
+.main-container {
+    padding-bottom:30px;
+}
+
+.title{
+    font-size: 45px;
+    box-sizing: border-box;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    padding: 15px;
+}
+
+.button-login{
+    margin: 0;
+    width: 75%;
+    height: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    font-size: 55px;
+    font-weight: bold;
+    border: none;
+
+    background-color: #a3adff;
+}
+
+.button-crew{
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    height: 30px;
+    width: 30%;
+    font-size: 12px;
+    background-color: #192960;
+    color: #FFFFFF;
+    border: none;
+}

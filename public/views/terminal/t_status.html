@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal Status</title>
+    <link rel="stylesheet" href="/stylesheets/terminal/main.css">
+    <link rel="stylesheet" href="/stylesheets/terminal/stickyBottom.css">
+    <link rel="stylesheet" href="/stylesheets/terminal/t_status.css">
+</head>
+<body background="/images/spacemaze_bild_terminal_small.jpg">
+
+<div>
+    <h1>Terminal Status</h1>
+
+</div>
+<div class="player_main">
+    <h2 class="player_id_text">ID:</h2>
+</div>
+<div class="player_main">
+    <h3 class="player_id_text" id="player_id"></h3>
+</div>
+<div class="player_main">
+    <h2 class="player_name_text">Name:</h2>
+</div>
+<div class="player_main">
+    <h3 class="player_name_text" id="player_name"></h3>
+</div>
+
+
+<p id="demo"></p>
+
+<div class="player_info">
+    <h3 class="title_occ">Belegt:</h3>
+    <p id="storage_occ">0</p>
+
+</div>
+<div class="player_info"><progress id="data_bar" value="0" max="100"></progress>
+</div>
+<div class="player_info">
+    <h3 class="title_cap">Kapazität:</h3>
+    <p id="storage_max">0</p>
+
+</div>
+
+<h3 class="title_all">Gesamt:</h3>
+<p id="storage_all">0</p>
+
+
+    <h2 class="heading">Zu tun</h2>
+
+    <ul id="todo_list">
+    </ul>
+<div class="menu_div">
+    <ul class="menu_list">
+        <li><button class="btn_menu" id="0">Daten hochladen</button></li>
+        <li><button class="btn_menu" id="1">Quests begutachten</button></li>
+        <li><button class="btn_menu" id="2">Vermächtnisse betrachten</button></li>
+        <li><button class="btn_menu" id="3">Rangliste anschauen</button></li>
+    </ul>
+
+</div>
+
+<div class="footer">
+    <table>
+        <button class="btn_footer" id="btn_no">Ausloggen</button>
+        <button class="btn_footer" id="btn_up">^</button>
+        <button class="btn_footer" id="btn_down">v</button>
+        <button class="btn_footer" id="btn_yes">Ja</button>
+    </table>
+</div>
+
+
+<script type="text/javascript" src="/javascripts/cookiehandler.js"></script>
+<script type="text/javascript" src="/javascripts/terminal/t_status.js"></script>
+<script type="text/javascript" src="/javascripts/terminal/autologout.js"></script>
+
+</body>
+</html>

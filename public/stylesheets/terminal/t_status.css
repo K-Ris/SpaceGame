@@ -1,0 +1,55 @@
+.heading{
+    font-weight: bold;
+}
+
+.lead-container{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: block;
+}
+
+.table{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.player_id_text{
+    align: left;
+    padding: 0px;
+    margin: 0 auto;
+}
+
+.player_name_text{
+    align: right;
+    padding: 0px;
+    margin: 0 auto;
+}
+
+.player_main{
+    display: inline-block;
+}
+
+.player_info{
+    display:inline-block;
+}
+
+.menu_list{
+    list-style-type: none;
+}
+
+.btn_menu{
+    border: none;
+    color: lightgoldenrodyellow;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px;
+    width: 50%;
+}
+
+#todo_list{
+    width: 70%;
+}

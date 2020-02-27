@@ -1,0 +1,15 @@
+
+ul {
+    padding:0;
+    width:100%;
+    text-align:center;
+}
+
+li {
+    margin:10px;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background:rgba(0,0,255,0.5);
+    list-style-type: none;
+}
