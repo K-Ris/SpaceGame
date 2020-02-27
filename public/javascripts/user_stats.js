@@ -1,7 +1,7 @@
-document.getElementById("btn_log").addEventListener("click", function () {
-
-    location.href = '/user_log'
-});
+//document.getElementById("btn_log").addEventListener("click", function () {
+//
+//    location.href = '/user_log'
+//});
 
 updateUser();
 
@@ -28,6 +28,7 @@ function updateUser() {
                 try {
 
                     var responseJSON = JSON.parse(req.responseText);
+                    console.log(responseJSON)
 
                     //document.getElementById("demo").innerHTML = JSON.stringify(responseJSON);
 

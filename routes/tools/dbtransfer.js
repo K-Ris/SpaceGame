@@ -13,8 +13,10 @@ router.all('/', function(req, res, next) {
 
     console.log("transfer Requesttype: " +requesttypeVar);
 
-    var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
+    //var dbHost = 'mongodb://masterkey:ananaskokos84@ds147836-a0.mlab.com:47836,ds147836-a1.mlab.com:47836/spacemazeproduction_db?replicaSet=rs-ds147836';
     //var dbHost = 'mongodb+srv://masterkey:ananaskokos84@spacegamecluster-bp8k0.mongodb.net/test?retryWrites=true';
+    var dbHost = 'mongodb://newkey:ananas456@ds323239-a0.mlab.com:23239,ds323239-a1.mlab.com:23239/spacemaze_db?replicaSet=rs-ds323239';
+
 
     mongoose.connect(dbHost);
 

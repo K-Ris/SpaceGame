@@ -16,14 +16,14 @@ router.all('/', function(req, res, next) {
 
 
     if(passcodeVar != undefined && passcodeVar != "null" && requesttypeVar != undefined && requesttypeVar != "null"){
-
+        console.log("not undefined")
         var dbHost = 'mongodb://newkey:ananas456@ds323239-a0.mlab.com:23239,ds323239-a1.mlab.com:23239/spacemaze_db?replicaSet=rs-ds323239';
-        mongo.connect(dbHost, (err, client) => {
+        mongo.connect(dbHost, function(err, client) {
             if (err) {
                 console.log(err)
                 return
             }
-
+            console.log("spacedb")
             const db = client.db('spacemaze_db')
 
             const collection_crew = db.collection('crew')
@@ -31,9 +31,10 @@ router.all('/', function(req, res, next) {
             const collection_quests = db.collection('quests')
             const collection_badge = db.collection('badges')
 
+            console.log("<>>>>>>>>>>"+requesttypeVar)
 
             if (requesttypeVar == "crew_login") {
-
+                console.log("crew login")
                 collection_crew.findOne({passcode: passcodeVar}, (err, item) => {
                     if (err) {
                         console.log(err);
@@ -66,12 +67,12 @@ router.all('/', function(req, res, next) {
                         let user = item;
                         if(item != null && item != undefined){
 
-                            console.log( "Crew Login dbresult:" + item);
-                            console.log("Crew logged in!");
-                            console.log("Crew result: "+ item.passcode);
+                            console.log( "User Login dbresult:" + item);
+                            console.log("User logged in!");
+                            console.log("User result: "+ item.passcode);
                             delete user["_id"];
                             res.json(user);
-
+                            console.log(user)
                             client.close();
                             res.end();
                         }
